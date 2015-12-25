@@ -43,6 +43,7 @@ class Ui_NewCost(object):
         self.category_comboBox.addItem("")
         self.category_comboBox.addItem("")
         self.category_comboBox.addItem("")
+        self.category_comboBox.addItem("")
         self.date_edit = QtWidgets.QDateEdit(NewCost)
         self.date_edit.setGeometry(QtCore.QRect(150, 140, 110, 22))
         self.date_edit.setDateTime(QtCore.QDateTime(QtCore.QDate(2015, 1, 1), QtCore.QTime(0, 0, 0)))
@@ -73,4 +74,5 @@ class Ui_NewCost(object):
         self.category_comboBox.setItemText(4, _translate("NewCost", "Подарунки"))
         self.category_comboBox.setItemText(5, _translate("NewCost", "Інтернет"))
         self.category_comboBox.setItemText(6, _translate("NewCost", "Телефон"))
+        self.category_comboBox.setItemText(7, _translate("NewCost", "Інше"))
 
