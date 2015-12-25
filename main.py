@@ -8,6 +8,7 @@ import registration_form
 import admin_form
 import user_form
 import plan_form
+import add_cost_form
 
 from validation import delete_user_request
 
@@ -85,7 +86,7 @@ class Window(authorization_form.Authorization):
         self.user.back_button.clicked.connect(self.dialog_usr.close)
         self.user.refresh_data_button.clicked.connect(self.show_user_history)
         self.user.edit_plane_button.clicked.connect(self.show_plan)
-
+        self.user.add_new_cost_button.clicked.connect(self.show_cost)
 
         self.close()
         self.dialog_usr.show()
@@ -107,7 +108,14 @@ class Window(authorization_form.Authorization):
 
         self.dialog_pln.show()
 
+    def show_cost(self):
+        global login
+        self.cost = add_cost_form.Add_cost()
+        self.dialog_cst = QtWidgets.QDialog()
+        self.cost.setupUi(self.dialog_cst)
+        self.cost.back_button.clicked.connect(self.dialog_cst.close)
 
+        self.dialog_cst.show()
 
 
 
