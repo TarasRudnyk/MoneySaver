@@ -7,6 +7,7 @@ from views import admin_ui
 class Admin(QtWidgets.QWidget, admin_ui.Ui_AdminWindow):
 
     def fill_table(self):
+        self.users_info_table_widget.clear()
         raw = 3
         self.users_info_table_widget.setRowCount(raw)
         self.users_info_table_widget.setColumnCount(5)

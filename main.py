@@ -7,6 +7,7 @@ import authorization_form
 import registration_form
 import admin_form
 import user_form
+import plan_form
 
 from validation import delete_user_request
 
@@ -45,8 +46,6 @@ class Window(authorization_form.Authorization):
                 self.show_admin()
             else:
                 self.show_user_info()
-        else:
-            QMessageBox.information(self, 'Помилка', "Перевірте логін і пароль")
 
     def show_admin(self):
         self.adm = admin_form.Admin()
@@ -81,7 +80,10 @@ class Window(authorization_form.Authorization):
         self.user = user_form.User()
         self.dialog_usr = QtWidgets.QDialog()
         self.user.setupUi(self.dialog_usr)
-        self.user.bu
+        self.user.confirm_button.clicked.connect(self.show_user_history)
+        self.user.back_button.clicked.connect(self.dialog_usr.close)
+        self.user.refresh_data_button.clicked.connect(self.show_user_history)
+        self.user.edit_plane_button.clicked.connect(self.show_plan)
 
 
         self.close()
@@ -89,6 +91,20 @@ class Window(authorization_form.Authorization):
         self.dialog_usr.exec()
         self.destroy()
 
+    def show_user_history(self):
+        month = self.user.month_comboBox.currentText()
+        year = self.user.year_comboBox.currentText().split(" ")[0]
+        self.user.fill_table(month, year)
+
+    def show_plan(self):
+        self.plan = plan_form.Plan()
+        self.dialog_pln = QtWidgets.QDialog()
+        self.plan.setupUi(self.dialog_pln)
+
+        self.dialog_usr.close()
+        self.dialog_pln.show()
+        self.dialog_pln.exec()
+        self.dialog_usr.show()
 
 
 
