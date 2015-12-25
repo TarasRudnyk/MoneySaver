@@ -1,10 +1,13 @@
 import sys
 from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5 import QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 
 import authorization_form
 import registration_form
 import admin_form
+
+from validation import delete_user_request
 
 
 class Window(authorization_form.Authorization):
@@ -39,11 +42,31 @@ class Window(authorization_form.Authorization):
             self.adm = admin_form.Admin()
             self.dialog_adm = QtWidgets.QDialog()
             self.adm.setupUi(self.dialog_adm)
+            self.adm.fill_table()
+
+            self.adm.back_button.clicked.connect(self.dialog_adm.close)
+            self.adm.remove_user_button.clicked.connect(self.delete_user)
 
             self.close()
             self.dialog_adm.show()
             self.dialog_adm.exec()
-            self.show()
+            self.destroy()
+
+    def delete_user(self):
+        row = self.adm.users_info_table_widget.currentRow()
+        if row != -1:
+            login = self.adm.users_info_table_widget.item(row, 0).text()
+            try:
+                if delete_user_request(login):
+                    QMessageBox.information(self, 'Видалення', "Користувач видалений")
+            except Exception as delete_exception:
+                QMessageBox.information(self, 'Видалення', "Виникли проблеми при видаленні.\nБудь ласка,"
+                                                           " спробуйте повторити пізніше.")
+        else:
+            QMessageBox.information(self, 'Помилка', "Виберіть користувача")
+
+
+        self.adm.users_info_table_widget.setCurrentCell(-1, -1)
 
 
 

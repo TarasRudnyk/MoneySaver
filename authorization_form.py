@@ -2,7 +2,7 @@ from PyQt5 import QtWidgets
 
 from views import authorization
 
-from validation import auth_verification
+from validation import auth_request
 
 
 class Authorization(QtWidgets.QWidget, authorization.Ui_Authorization):
@@ -25,7 +25,7 @@ class Authorization(QtWidgets.QWidget, authorization.Ui_Authorization):
             result = False
 
         if result:
-            if auth_verification(login, password):
+            if auth_request(login, password):
                 return True
 
         return False
