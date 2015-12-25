@@ -69,13 +69,16 @@ class Ui_UserInfo(object):
         self.back_button = QtWidgets.QPushButton(UserInfo)
         self.back_button.setGeometry(QtCore.QRect(10, 540, 120, 23))
         self.back_button.setObjectName("back_button")
+        self.pushButton = QtWidgets.QPushButton(UserInfo)
+        self.pushButton.setGeometry(QtCore.QRect(220, 540, 171, 23))
+        self.pushButton.setObjectName("pushButton")
 
         self.retranslateUi(UserInfo)
         QtCore.QMetaObject.connectSlotsByName(UserInfo)
 
     def retranslateUi(self, UserInfo):
         _translate = QtCore.QCoreApplication.translate
-        UserInfo.setWindowTitle(_translate("UserInfo", "Історія користувача"))
+        UserInfo.setWindowTitle(_translate("UserInfo", "Моя історія"))
         self.info_label.setText(_translate("UserInfo", "Вкажіть проміжок часу, за який хочете переглянути історію витрат"))
         self.month_comboBox.setItemText(0, _translate("UserInfo", "Січень"))
         self.month_comboBox.setItemText(1, _translate("UserInfo", "Лютий"))
@@ -112,4 +115,5 @@ class Ui_UserInfo(object):
         item = self.costs_tableWidget.horizontalHeaderItem(4)
         item.setText(_translate("UserInfo", "Коментар"))
         self.back_button.setText(_translate("UserInfo", "Назад"))
+        self.pushButton.setText(_translate("UserInfo", "Додати нову витрату"))
 
