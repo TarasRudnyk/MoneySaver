@@ -26,6 +26,7 @@ class Authorization(QtWidgets.QWidget, authorization.Ui_Authorization):
 
         if result:
             if auth_request(login, password):
-                return True
+                return {"success": True,
+                        "role": "admin"}
 
-        return False
+        return {"success": False}
