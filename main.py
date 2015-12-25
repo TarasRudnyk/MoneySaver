@@ -1,6 +1,8 @@
 import sys
-from PyQt5.QtWidgets import QWidget, QApplication
+
 from PyQt5 import QtWidgets
+from PyQt5 import QtCore
+from PyQt5.QtWidgets import QWidget, QApplication
 from PyQt5.QtWidgets import QMessageBox
 
 import authorization_form
@@ -27,7 +29,7 @@ class Window(authorization_form.Authorization):
     def show_registration(self):
 
         self.reg = registration_form.Registration()
-        self.dialog_reg = QtWidgets.QDialog()
+        self.dialog_reg = QtWidgets.QDialog(None, QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
         self.reg.setupUi(self.dialog_reg)
         self.reg.RegisterPushButton.clicked.connect(self.validate_registration)
 
@@ -51,7 +53,7 @@ class Window(authorization_form.Authorization):
 
     def show_admin(self):
         self.adm = admin_form.Admin()
-        self.dialog_adm = QtWidgets.QDialog()
+        self.dialog_adm = QtWidgets.QDialog(None, QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
         self.adm.setupUi(self.dialog_adm)
         self.adm.fill_table()
 
@@ -80,7 +82,7 @@ class Window(authorization_form.Authorization):
 
     def show_user_info(self):
         self.user = user_form.User()
-        self.dialog_usr = QtWidgets.QDialog()
+        self.dialog_usr = QtWidgets.QDialog(None, QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
         self.user.setupUi(self.dialog_usr)
         self.user.confirm_button.clicked.connect(self.show_user_history)
         self.user.back_button.clicked.connect(self.dialog_usr.close)
@@ -91,7 +93,7 @@ class Window(authorization_form.Authorization):
         self.close()
         self.dialog_usr.show()
         self.dialog_usr.exec()
-        self.destroy()
+        self.show()
 
     def show_user_history(self):
         month = self.user.month_comboBox.currentText()
@@ -101,7 +103,7 @@ class Window(authorization_form.Authorization):
     def show_plan(self):
         global login
         self.plan = plan_form.Plan()
-        self.dialog_pln = QtWidgets.QDialog()
+        self.dialog_pln = QtWidgets.QDialog(None, QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
         self.plan.setupUi(self.dialog_pln)
         self.plan.back_button.clicked.connect(self.dialog_pln.close)
         self.plan.show_user_plan(login)
@@ -111,15 +113,11 @@ class Window(authorization_form.Authorization):
     def show_cost(self):
         global login
         self.cost = add_cost_form.Add_cost()
-        self.dialog_cst = QtWidgets.QDialog()
+        self.dialog_cst = QtWidgets.QDialog(None, QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
         self.cost.setupUi(self.dialog_cst)
         self.cost.back_button.clicked.connect(self.dialog_cst.close)
 
         self.dialog_cst.show()
-
-
-#krjghksuhgskhk jkjhkdghisur
-
 
 
 if __name__ == '__main__':

@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Нова витрата</string>
   </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>../views/icon.jpg</normaloff>../views/icon.jpg</iconset>
+  </property>
   <widget class="QLabel" name="summary_price_label">
    <property name="geometry">
     <rect>
@@ -68,7 +72,7 @@
   <widget class="QPushButton" name="save_button">
    <property name="geometry">
     <rect>
-     <x>20</x>
+     <x>230</x>
      <y>280</y>
      <width>131</width>
      <height>23</height>
@@ -81,7 +85,7 @@
   <widget class="QPushButton" name="back_button">
    <property name="geometry">
     <rect>
-     <x>230</x>
+     <x>20</x>
      <y>280</y>
      <width>131</width>
      <height>23</height>
@@ -143,6 +147,11 @@
    <item>
     <property name="text">
      <string>Телефон</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Інше</string>
     </property>
    </item>
   </widget>
