@@ -39,6 +39,7 @@ class Ui_AdminWindow(object):
         # self.users_info_table_widget.setHorizontalHeaderItem(3, item)
         # item = QtWidgets.QTableWidgetItem()
         # self.users_info_table_widget.setHorizontalHeaderItem(4, item)
+        self.users_info_table_widget.setEditTriggers(QtWidgets.QAbstractItemView.NoEditTriggers)
         self.users_info_table_widget.horizontalHeader().setCascadingSectionResizes(False)
         self.users_info_table_widget.horizontalHeader().setDefaultSectionSize(245)
         self.users_info_table_widget.horizontalHeader().setStretchLastSection(True)
