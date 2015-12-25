@@ -1,8 +1,8 @@
 from PyQt5 import QtWidgets
-from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtWidgets import QTableWidgetItem
 
 from views import admin_ui
+
 
 class Admin(QtWidgets.QWidget, admin_ui.Ui_AdminWindow):
 
