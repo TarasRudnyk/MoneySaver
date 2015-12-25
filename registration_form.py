@@ -1,8 +1,9 @@
+import re
 from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 from views import registration
 
-from validation import check_email, reg_verification
+from validation import reg_request
 
 
 class Registration(QtWidgets.QWidget, registration.Ui_Registration):
@@ -45,6 +46,10 @@ class Registration(QtWidgets.QWidget, registration.Ui_Registration):
             self.repeatPassworError.setText("Введіть однакові паролі!")
             result = False
 
+        if len(phone) == 0:
+            self.phoneNumberError.setText("Це поле не може бути пустим!")
+            result = False
+
         if len(name) < 2:
             self.nameError.setText("Ім'я не може бути менше 2 символів!")
             result = False
@@ -53,13 +58,22 @@ class Registration(QtWidgets.QWidget, registration.Ui_Registration):
             self.lastNameError.setText("Прізвище не може бути менше 2 символів!")
             result = False
 
-        if len(email) > 0 and not check_email(email):
+        if not check_email(email):
             self.EmailError.setText("Ви ввели некоректний емайл!")
+            result = False
+        if len(email) == 0:
+            self.EmailError.setText("Це поле не може бути пустим!")
             result = False
 
         if result:
-            if reg_verification(login, password, repeat_password, phone, name, last_name, email):
+            if reg_request(login, password, repeat_password, phone, name, last_name, email):
                 QMessageBox.information(self, 'Зареєстровано', "Користувача успішно зареєстровано!")
                 return True
 
         return False
+
+
+def check_email(email):
+    if re.match("^[-\w.]+@([A-z0-9][-A-z0-9]+\.)+[A-z]{2,4}$", email):
+        return True
+    return False
