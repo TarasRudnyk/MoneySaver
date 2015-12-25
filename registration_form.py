@@ -45,15 +45,23 @@ class Registration(QtWidgets.QWidget, registration.Ui_Registration):
         if password != repeat_password:
             self.repeatPassworError.setText("Введіть однакові паролі!")
             result = False
+        if len(repeat_password) == 0:
+            self.repeatPassworError.setText("Це поле не може бути пустим!")
+            result = False
 
         if len(phone) == 0:
             self.phoneNumberError.setText("Це поле не може бути пустим!")
             result = False
 
+        if not name.isalpha():
+            self.nameError.setText("повідомлення")
         if len(name) < 2:
             self.nameError.setText("Ім'я не може бути менше 2 символів!")
             result = False
 
+        if not last_name.isalpha():
+            self.lastNameError.setText("повідомлення")
+            result = False
         if len(last_name) < 2:
             self.lastNameError.setText("Прізвище не може бути менше 2 символів!")
             result = False

@@ -72,6 +72,7 @@ class Ui_Registration(object):
         self.phoneNumberLineEdit = QtWidgets.QLineEdit(Registration)
         self.phoneNumberLineEdit.setGeometry(QtCore.QRect(130, 246, 221, 20))
         self.phoneNumberLineEdit.setObjectName("phoneNumberLineEdit")
+        self.phoneNumberLineEdit.setInputMask("0000000000")
         self.nameLineEdit = QtWidgets.QLineEdit(Registration)
         self.nameLineEdit.setGeometry(QtCore.QRect(130, 302, 221, 20))
         self.nameLineEdit.setObjectName("nameLineEdit")

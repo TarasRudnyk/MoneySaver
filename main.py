@@ -32,6 +32,7 @@ class Window(authorization_form.Authorization):
         self.dialog_reg = QtWidgets.QDialog(None, QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
         self.reg.setupUi(self.dialog_reg)
         self.reg.RegisterPushButton.clicked.connect(self.validate_registration)
+        self.reg.BackPushButton.clicked.connect(self.dialog_reg.close)
 
         self.close()
         self.dialog_reg.show()
@@ -115,7 +116,6 @@ class Window(authorization_form.Authorization):
         self.cost = add_cost_form.Add_cost()
         self.dialog_cst = QtWidgets.QDialog(None, QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
         self.cost.setupUi(self.dialog_cst)
-        self.cost.back_button.clicked.connect(self.dialog_cst.close)
 
         self.dialog_cst.show()
 
