@@ -11,7 +11,9 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_AdminWindow(object):
     def setupUi(self, AdminWindow):
         AdminWindow.setObjectName("AdminWindow")
-        AdminWindow.resize(792, 492)
+        AdminWindow.resize(1360, 700)
+        AdminWindow.setMinimumSize(QtCore.QSize(1360, 700))
+        AdminWindow.setMaximumSize(QtCore.QSize(1360, 700))
         self.gridLayout = QtWidgets.QGridLayout(AdminWindow)
         self.gridLayout.setObjectName("gridLayout")
         self.block_user_button = QtWidgets.QPushButton(AdminWindow)

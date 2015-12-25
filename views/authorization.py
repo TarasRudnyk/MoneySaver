@@ -8,6 +8,7 @@
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
+
 class Ui_Authorization(object):
     def setupUi(self, Authorization):
         Authorization.setObjectName("Authorization")
