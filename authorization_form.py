@@ -26,4 +26,6 @@ class Authorization(QtWidgets.QWidget, authorization.Ui_Authorization):
 
         if result:
             if auth_verification(login, password):
-                pass
+                return True
+
+        return False
