@@ -27,7 +27,7 @@ class Ui_PlanWindow(object):
         self.save_button.setGeometry(QtCore.QRect(240, 140, 110, 23))
         self.save_button.setObjectName("save_button")
         self.label = QtWidgets.QLabel(PlanWindow)
-        self.label.setGeometry(QtCore.QRect(110, 20, 181, 16))
+        self.label.setGeometry(QtCore.QRect(50, 20, 250, 16))
         self.label.setObjectName("label")
 
         self.retranslateUi(PlanWindow)
@@ -39,5 +39,5 @@ class Ui_PlanWindow(object):
         self.money_label.setText(_translate("PlanWindow", "Введіть суму (грн)"))
         self.back_button.setText(_translate("PlanWindow", "Назад"))
         self.save_button.setText(_translate("PlanWindow", "Зберегти"))
-        self.label.setText(_translate("PlanWindow", "Ваш поточний фінансовий план"))
+        self.label.setText(_translate("PlanWindow", "Ваш поточний фінансовий план: "))
 

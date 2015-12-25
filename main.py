@@ -11,6 +11,7 @@ import plan_form
 
 from validation import delete_user_request
 
+login = ""
 
 class Window(authorization_form.Authorization):
 
@@ -97,14 +98,16 @@ class Window(authorization_form.Authorization):
         self.user.fill_table(month, year)
 
     def show_plan(self):
+        global login
         self.plan = plan_form.Plan()
         self.dialog_pln = QtWidgets.QDialog()
         self.plan.setupUi(self.dialog_pln)
+        self.plan.back_button.clicked.connect(self.dialog_pln.close)
+        self.plan.show_user_plan(login)
 
-        self.dialog_usr.close()
         self.dialog_pln.show()
-        self.dialog_pln.exec()
-        self.dialog_usr.show()
+
+
 
 
 
