@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>UserInfo</class>
+ <widget class="QWidget" name="UserInfo">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>855</width>
+    <height>579</height>
+   </rect>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>855</width>
+    <height>579</height>
+   </size>
+  </property>
+  <property name="sizeIncrement">
+   <size>
+    <width>855</width>
+    <height>579</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Моя історія</string>
+  </property>
+  <widget class="QLabel" name="info_label">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>20</y>
+     <width>701</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Вкажіть проміжок часу, за який хочете переглянути історію витрат</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="month_comboBox">
+   <property name="geometry">
+    <rect>
+     <x>380</x>
+     <y>20</y>
+     <width>120</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>Січень</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Лютий</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Березень</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Квітень</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Травень</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Червень</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Липень</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Серпень</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Вересень</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Жовтень</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Листопад</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>Грудень</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QComboBox" name="year_comboBox">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>20</y>
+     <width>120</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <item>
+    <property name="text">
+     <string>2014 рік</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>2015 рік</string>
+    </property>
+   </item>
+   <item>
+    <property name="text">
+     <string>2016 рік</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QPushButton" name="confirm_button">
+   <property name="geometry">
+    <rect>
+     <x>700</x>
+     <y>20</y>
+     <width>120</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Підтвердити</string>
+   </property>
+  </widget>
+  <widget class="QTableWidget" name="costs_tableWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>60</y>
+     <width>831</width>
+     <height>461</height>
+    </rect>
+   </property>
+   <attribute name="horizontalHeaderDefaultSectionSize">
+    <number>150</number>
+   </attribute>
+   <attribute name="horizontalHeaderStretchLastSection">
+    <bool>true</bool>
+   </attribute>
+   <column>
+    <property name="text">
+     <string>Категорія</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Сума</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Дата</string>
+    </property>
+   </column>
+   <column>
+    <property name="text">
+     <string>Коментар</string>
+    </property>
+   </column>
+  </widget>
+  <widget class="QPushButton" name="back_button">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>540</y>
+     <width>171</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Назад</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="add_new_cost_button">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>540</y>
+     <width>171</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Додати нову витрату</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="edit_plane_button">
+   <property name="geometry">
+    <rect>
+     <x>670</x>
+     <y>540</y>
+     <width>171</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Редагувати план витрат</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="refresh_data_button">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>540</y>
+     <width>171</width>
+     <height>23</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Оновити дані</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
