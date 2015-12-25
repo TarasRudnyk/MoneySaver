@@ -67,11 +67,14 @@ class Ui_UserInfo(object):
         self.costs_tableWidget.horizontalHeader().setDefaultSectionSize(150)
         self.costs_tableWidget.horizontalHeader().setStretchLastSection(True)
         self.back_button = QtWidgets.QPushButton(UserInfo)
-        self.back_button.setGeometry(QtCore.QRect(10, 540, 120, 23))
+        self.back_button.setGeometry(QtCore.QRect(10, 540, 171, 23))
         self.back_button.setObjectName("back_button")
         self.pushButton = QtWidgets.QPushButton(UserInfo)
-        self.pushButton.setGeometry(QtCore.QRect(220, 540, 171, 23))
+        self.pushButton.setGeometry(QtCore.QRect(340, 540, 171, 23))
         self.pushButton.setObjectName("pushButton")
+        self.pushButton_2 = QtWidgets.QPushButton(UserInfo)
+        self.pushButton_2.setGeometry(QtCore.QRect(620, 540, 171, 23))
+        self.pushButton_2.setObjectName("pushButton_2")
 
         self.retranslateUi(UserInfo)
         QtCore.QMetaObject.connectSlotsByName(UserInfo)
@@ -116,4 +119,5 @@ class Ui_UserInfo(object):
         item.setText(_translate("UserInfo", "Коментар"))
         self.back_button.setText(_translate("UserInfo", "Назад"))
         self.pushButton.setText(_translate("UserInfo", "Додати нову витрату"))
+        self.pushButton_2.setText(_translate("UserInfo", "Редагувати план витрат"))
 
