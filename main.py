@@ -118,7 +118,7 @@ class Window(authorization_form.Authorization):
         self.dialog_cst.show()
 
 
-
+#krjghksuhgskhk jkjhkdghisur
 
 
 
