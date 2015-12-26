@@ -63,3 +63,6 @@ def get_user_info(login):
         info_results["cost_comment"] = result_user_info[3]
 
     return info_results
+
+
+
