@@ -104,9 +104,10 @@ class Window(authorization_form.Authorization):
         self.show()
 
     def show_user_history(self):
+        global login
         month = self.user.month_comboBox.currentText()
         year = self.user.year_comboBox.currentText().split(" ")[0]
-        self.user.fill_table(month, year)
+        self.user.fill_table(login, month, year)
 
     def show_plan(self):
         global login

@@ -43,6 +43,7 @@ def get_user_info(login, cost_date):
     global con
     global cur
 
+    user_cost_number = "0"
     info_results = {"success": True,
                     "cost_category": '',
                     "cost_sum": '',
@@ -54,13 +55,14 @@ def get_user_info(login, cost_date):
         user_cost_number = result_cost_number[0]
 
     cur.execute('SELECT cost_category, cost_money_summ, cost_date, cost_comment'
-                ' FROM costs WHERE cost_number = \'{0}\' AND cost_date LIKE \'%\'\'{1}\''\
+                ' FROM costs WHERE cost_number = {0} AND cost_date LIKE \'{1}\''
                 .format(user_cost_number, cost_date))
 
+    print(cur)
     for result_user_info in cur:
         info_results["cost_category"] = result_user_info[0]
         info_results["cost_sum"] = result_user_info[1]
-        info_results["cost_date"] = result_user_info[2]
+        info_results["cost_date"] = str(result_user_info[2])
         info_results["cost_comment"] = result_user_info[3]
 
     return info_results
