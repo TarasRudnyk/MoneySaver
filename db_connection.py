@@ -48,12 +48,14 @@ def get_user_info(login, cost_date):
                     "cost_category": '',
                     "cost_sum": '',
                     "cost_date": '',
+                    "cost_time": '',
                     "cost_comment": ''}
 
     cost_categorys = []
     cost_money_sums = []
     cost_dates = []
     cost_comments = []
+    cost_time = []
 
     user_cost_numbers =[]
 
@@ -77,11 +79,13 @@ def get_user_info(login, cost_date):
         cost_categorys.append(result_user_info[0])
         cost_money_sums.append(result_user_info[1])
         cost_dates.append(str(result_user_info[2]))
-        cost_comments.append(result_user_info[3])
+        cost_time.append(result_user_info[3])
+        cost_comments.append(result_user_info[4])
 
     info_results['cost_category'] = cost_categorys
     info_results['cost_sum'] = cost_money_sums
     info_results['cost_date'] = cost_dates
+    info_results['cost_time'] = cost_time
     info_results['cost_comment'] = cost_comments
 
     return info_results
