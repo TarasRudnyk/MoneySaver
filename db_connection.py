@@ -129,3 +129,32 @@ def get_plane(login, plane_month):
 
     return result
 
+
+def registration(registration_result):
+    global con
+    global cur
+
+    result = {
+        "success": True
+    }
+
+    try:
+        # cur.execute('set transaction isolation level serializable')
+        cur.execute('INSERT INTO users (USER_LOGIN_PK, USER_PASSWORD, USER_FIRST_NAME, USER_LAST_NAME,'
+                    ' USER_PHONE_NUMBER, USER_EMAIL, USER_ROLE)'
+                    'VALUES (\'{0}\',\'{1}\', \'{2}\', \'{3}\', \'{4}\', \'{5}\', \'{6}\')'.format(
+                                                                            registration_result['user_login'],
+                                                                            registration_result['user_password'],
+                                                                            registration_result['user_first_name'],
+                                                                            registration_result['user_last_name'],
+                                                                            registration_result['user_phone_number'],
+                                                                            registration_result['user_email'],
+                                                                            registration_result['user_role']))
+
+        con.commit()
+    except Exception as E:
+        result["success"] = False
+        con.rollback()
+
+    return result
+
