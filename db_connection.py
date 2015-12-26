@@ -50,6 +50,11 @@ def get_user_info(login, cost_date):
                     "cost_date": '',
                     "cost_comment": ''}
 
+    cost_categorys = []
+    cost_money_sums = []
+    cost_dates = []
+    cost_comments = []
+
     cur.execute('SELECT cost_number_fk FROM usercosts WHERE user_login_fk = \'{0}\''.format(login))
     for result_cost_number in cur:
         user_cost_number = result_cost_number[0]
@@ -60,10 +65,15 @@ def get_user_info(login, cost_date):
 
     print(cur)
     for result_user_info in cur:
-        info_results["cost_category"] = result_user_info[0]
-        info_results["cost_sum"] = result_user_info[1]
-        info_results["cost_date"] = str(result_user_info[2])
-        info_results["cost_comment"] = result_user_info[3]
+        cost_categorys.append(result_user_info[0])
+        cost_money_sums.append(result_user_info[1])
+        cost_dates.append(str(result_user_info[2]))
+        cost_comments.append(result_user_info[3])
+
+    info_results['cost_category'] = cost_categorys
+    info_results['cost_sum'] = cost_money_sums
+    info_results['cost_date'] = cost_dates
+    info_results['cost_comment'] = cost_comments
 
     return info_results
 
