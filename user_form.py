@@ -20,24 +20,25 @@ class User(QtWidgets.QWidget, user_info_ui.Ui_UserInfo):
         self.costs_tableWidget.setHorizontalHeaderItem(2, QTableWidgetItem("Дата"))
         self.costs_tableWidget.setHorizontalHeaderItem(3, QTableWidgetItem("Коментар"))
 
-        self.costs_tableWidget.setItem(0, 0, QTableWidgetItem(year))
+        self.costs_tableWidget.setItem(0, 0, QTableWidgetItem(""))
 
 
 
 def translate_month(month):
     dictionary = {
-        "Січень": 0,
-        "Лютий": 1,
-        "Березень": 2,
-        "Квітень": 3,
-        "Травень": 4,
-        "Червнь": 5,
-        "Липень": 6,
-        "Серпень": 7,
-        "Вересень": 8,
-        "Жовтень": 9,
-        "Листопад": 10,
-        "Грудень": 11,
+        "Всі": 0,
+        "Січень": 1,
+        "Лютий": 2,
+        "Березень": 3,
+        "Квітень": 4,
+        "Травень": 5,
+        "Червнь": 6,
+        "Липень": 7,
+        "Серпень": 8,
+        "Вересень": 9,
+        "Жовтень": 10,
+        "Листопад": 11,
+        "Грудень": 12,
     }
 
     month = dictionary[month]

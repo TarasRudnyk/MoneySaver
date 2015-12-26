@@ -18,4 +18,4 @@ def change_user_plan(login, value):
     return True
 
 def get_user_plan(login):
-    return 100000000001
+    return 825

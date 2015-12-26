@@ -30,6 +30,7 @@ class Ui_Authorization(object):
         self.PasswordlineEdit_2 = QtWidgets.QLineEdit(Authorization)
         self.PasswordlineEdit_2.setGeometry(QtCore.QRect(131, 83, 201, 20))
         self.PasswordlineEdit_2.setObjectName("PasswordlineEdit_2")
+        self.PasswordlineEdit_2.setEchoMode(2)
         self.pushButton = QtWidgets.QPushButton(Authorization)
         self.pushButton.setGeometry(QtCore.QRect(128, 140, 90, 23))
         self.pushButton.setObjectName("pushButton")

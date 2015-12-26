@@ -35,8 +35,8 @@ class Registration(QtWidgets.QWidget, registration.Ui_Registration):
             self.loginError.setText("Це поле не може бути пустим!")
             result = False
 
-        if len(password) < 8:
-            self.passwordError.setText("Пароль має бути не менше 8 символів!")
+        if len(password) < 5:
+            self.passwordError.setText("Пароль має бути не менше 5 символів!")
             result = False
         if len(password) == 0:
             self.passwordError.setText("Це поле не може бути пустим!")
@@ -67,7 +67,7 @@ class Registration(QtWidgets.QWidget, registration.Ui_Registration):
             result = False
 
         if not check_email(email):
-            self.EmailError.setText("Ви ввели некоректний емайл!")
+            self.EmailError.setText("Ви ввели некоректну адресу пошти!!")
             result = False
         if len(email) == 0:
             self.EmailError.setText("Це поле не може бути пустим!")

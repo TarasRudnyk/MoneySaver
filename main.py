@@ -25,6 +25,8 @@ class Window(authorization_form.Authorization):
         self.show()
         self.pushButton.clicked.connect(self.show_user_or_admin_form)
         self.pushButton_2.clicked.connect(self.show_registration)
+        self.LoginlineEdit.returnPressed.connect(self.pushButton.click)
+        self.PasswordlineEdit_2.returnPressed.connect(self.pushButton.click)
 
     def show_registration(self):
 
@@ -51,6 +53,9 @@ class Window(authorization_form.Authorization):
                 self.show_admin()
             else:
                 self.show_user_info()
+        self.LoginlineEdit.setText("")
+        self.PasswordlineEdit_2.setText("")
+
 
     def show_admin(self):
         self.adm = admin_form.Admin()
@@ -116,6 +121,7 @@ class Window(authorization_form.Authorization):
         self.cost = add_cost_form.Add_cost()
         self.dialog_cst = QtWidgets.QDialog(None, QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
         self.cost.setupUi(self.dialog_cst)
+        self.cost.back_button.clicked.connect(self.dialog_cst.close)
 
         self.dialog_cst.show()
 
