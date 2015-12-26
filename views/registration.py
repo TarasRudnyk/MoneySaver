@@ -72,7 +72,7 @@ class Ui_Registration(object):
         self.repeatPasswordLineEdit = QtWidgets.QLineEdit(Registration)
         self.repeatPasswordLineEdit.setGeometry(QtCore.QRect(130, 190, 221, 20))
         self.repeatPasswordLineEdit.setObjectName("repeatPasswordLineEdit")
-        self.repeatPasswordLineEdit.setMaxLength(250)
+        self.repeatPasswordLineEdit.setMaxLength(25)
         self.repeatPasswordLineEdit.setEchoMode(2)
         self.phoneNumberLineEdit = QtWidgets.QLineEdit(Registration)
         self.phoneNumberLineEdit.setGeometry(QtCore.QRect(130, 246, 221, 20))

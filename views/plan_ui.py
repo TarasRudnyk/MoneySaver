@@ -23,6 +23,7 @@ class Ui_PlanWindow(object):
         self.money_lineEdit = QtWidgets.QLineEdit(PlanWindow)
         self.money_lineEdit.setGeometry(QtCore.QRect(180, 70, 171, 20))
         self.money_lineEdit.setObjectName("money_lineEdit")
+        self.money_lineEdit.setInputMask("D99999")
         self.back_button = QtWidgets.QPushButton(PlanWindow)
         self.back_button.setGeometry(QtCore.QRect(40, 140, 110, 23))
         self.back_button.setObjectName("back_button")
