@@ -30,3 +30,4 @@ class Authorization(QtWidgets.QWidget, authorization.Ui_Authorization):
                 QMessageBox.information(self, 'Помилка', auth["message"])
                 return {"result": False}
             return auth
+        return {"result": False}

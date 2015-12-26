@@ -3,7 +3,7 @@ from PyQt5.QtWidgets import QMessageBox
 from PyQt5.QtWidgets import QTableWidgetItem
 
 from views import user_info_ui
-from validation import select_month_user_info
+from server_connection import select_month_user_info
 
 
 class User(QtWidgets.QWidget, user_info_ui.Ui_UserInfo):
@@ -14,9 +14,7 @@ class User(QtWidgets.QWidget, user_info_ui.Ui_UserInfo):
         month = translate_month(month)
         cost = "%" + str(month) + "%" + year[-2:]
         data = select_month_user_info(login, cost)
-        print(cost)
-        print(data)
-        raw = 2
+        raw = len(data["cost_sum"])
 
         self.costs_tableWidget.setColumnCount(4)
         self.costs_tableWidget.setRowCount(raw)
@@ -25,7 +23,11 @@ class User(QtWidgets.QWidget, user_info_ui.Ui_UserInfo):
         self.costs_tableWidget.setHorizontalHeaderItem(2, QTableWidgetItem("Дата"))
         self.costs_tableWidget.setHorizontalHeaderItem(3, QTableWidgetItem("Коментар"))
 
-        self.costs_tableWidget.setItem(0, 0, QTableWidgetItem(""))
+        for i in range(raw):
+            self.costs_tableWidget.setItem(i, 0, QTableWidgetItem(data["cost_category"][i]))
+            self.costs_tableWidget.setItem(i, 1, QTableWidgetItem(str(data['cost_sum'][i])))
+            self.costs_tableWidget.setItem(i, 2, QTableWidgetItem(data['cost_date'][i]))
+            self.costs_tableWidget.setItem(i, 3, QTableWidgetItem(data['cost_comment'][i]))
 
 
 
