@@ -100,10 +100,11 @@ def add_new_cost(new_cost_data, login):
         cost_number = result_cost_number + 1
 
     try:
-        cur.execute('INSERT INTO costs(cost_number, cost_category, cost_money_summ, cost_date, cost_time '
-                    'VALUES (\'{0}\',\'{1}\', \'{2}\', \'{3}\'))'.format(cost_number,
+        cur.execute('INSERT INTO costs(cost_number, cost_category, cost_money_summ, cost_comment, cost_date, cost_time) '
+                    'VALUES (\'{0}\',\'{1}\', \'{2}\', \'{3}\', \'{4}\', \'{5}\'))'.format(cost_number,
                                                                          new_cost_data['cost_category'],
                                                                          new_cost_data['cost_money_summ'],
+                                                                         new_cost_data['cost_comment'],
                                                                          new_cost_data['cost_date'],
                                                                          new_cost_data['cost_time']))
 
