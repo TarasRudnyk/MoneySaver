@@ -55,13 +55,22 @@ def get_user_info(login, cost_date):
     cost_dates = []
     cost_comments = []
 
+    user_cost_numbers =[]
+
     cur.execute('SELECT cost_number_fk FROM usercosts WHERE user_login_fk = \'{0}\''.format(login))
     for result_cost_number in cur:
-        user_cost_number = result_cost_number[0]
+        user_cost_numbers.append(result_cost_number[0])
+
+    if len(user_cost_numbers) > 1:
+        user_cost_numbers_tuple = tuple(user_cost_numbers)
+    elif len(user_cost_numbers) == 1:
+        user_cost_numbers_tuple = user_cost_numbers[0]
+    else:
+        user_cost_numbers_tuple = 0
 
     cur.execute('SELECT cost_category, cost_money_summ, cost_date, cost_comment'
-                ' FROM costs WHERE cost_number = {0} AND cost_date LIKE \'{1}\''
-                .format(user_cost_number, cost_date))
+                ' FROM costs WHERE cost_number IN {0} AND cost_date LIKE \'{1}\''
+                .format(user_cost_numbers_tuple, cost_date))
 
     print(cur)
     for result_user_info in cur:
