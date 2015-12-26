@@ -245,3 +245,37 @@ def delete_selected_user(login):
 
     return result
 
+
+def get_all_users():
+    global con
+    global cur
+
+    users_result = {"success": True,
+                    "users_logins": '',
+                    "users_last_names": '',
+                    "users_first_names": '',
+                    "users_phone_numbers": '',
+                    "users_emails": ''}
+
+    users_logins = []
+    users_last_names = []
+    users_first_names = []
+    users_phone_numbers = []
+    users_emails = []
+
+    cur.execute('SELECT user_login_pk, user_last_name, user_first_name, user_phone_number, user_email'
+                ' FROM users WHERE user_role != \'admin\'')
+    for result in cur:
+        users_logins.append(result[0])
+        users_last_names.append(result[1])
+        users_first_names.append(result[2])
+        users_phone_numbers.append(result[3])
+        users_emails.append(result[4])
+
+        users_result["users_logins"] = users_logins
+        users_result["users_last_names"] = users_last_names
+        users_result["users_first_names"] = users_first_names
+        users_result["users_phone_numbers"] = users_phone_numbers
+        users_result["users_emails"] = users_emails
+
+    return users_result
