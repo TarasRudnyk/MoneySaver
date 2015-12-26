@@ -66,7 +66,44 @@ def get_user_info(login, cost_date):
     return info_results
 
 
-def add_new_cost():
+def add_new_cost(new_cost_data, login):
     global con
     global cur
 
+    result = {
+        "success": True
+    }
+    try:
+        cur.execute('INSERT INTO costs(cost_number, cost_category, cost_money_summ, cost_date '
+                    'VALUES (\'{0}\',\'{1}\', \'{2}\', \'{3}\'))'.format(new_cost_data['cost_number'],
+                                                                         new_cost_data['cost_category'],
+                                                                         new_cost_data['cost_money_summ'],
+                                                                         new_cost_data['cost_date']))
+
+        cur.execute('INSERT INTO usercosts(cost_number_fk, user_login_fk)'
+                    ' VALUES (\'{0}\', \'{1}\')'.format(new_cost_data['cost_number'],
+                                                        login))
+
+        con.commit()
+    except Exception as E:
+        result['success'] = False
+        con.rollback()
+
+    return result
+
+
+def get_plane(login, plane_month):
+    global con
+    global cur
+
+    result = {
+        "success": True
+    }
+
+    try:
+        cur.execute('SELECT plane_money_summ FROM plane '
+                    'WHERE user_login_fk = \'{0}\' AND plane_month = \'{1}\''. format(login, plane_month))
+    except Exception as E:
+        result['success'] = False
+
+    return result
