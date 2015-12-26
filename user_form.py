@@ -24,6 +24,9 @@ class User(QtWidgets.QWidget, user_info_ui.Ui_UserInfo):
         self.costs_tableWidget.setHorizontalHeaderItem(3, QTableWidgetItem("Коментар"))
 
         for i in range(raw):
+            datetime = data["cost_date"][i]
+            datetime = str(datetime).split(" ")[0] + " " + str(data["cost_time"][i])
+            print(datetime)
             self.costs_tableWidget.setItem(i, 0, QTableWidgetItem(data["cost_category"][i]))
             self.costs_tableWidget.setItem(i, 1, QTableWidgetItem(str(data['cost_sum'][i])))
             self.costs_tableWidget.setItem(i, 2, QTableWidgetItem(data['cost_date'][i]))

@@ -44,12 +44,12 @@ while True:
                     server_answer = add_new_cost(received_data["login"], received_data["cost_data"])
                     result = "Success" if server_answer["success"] else "Failed"
                     print("Result", result)
-            #
-            #     elif action == "delete_user":
-            #         server_answer = delete_selected_users(received_data["user_card_number"])
-            #         print("Card number to delete", received_data["user_card_number"])
-            #         result = "Success" if server_answer["success"] else "Failed"
-            #         print("Result", result)
+
+                elif action == "delete_user":
+                    server_answer = delete_selected_users(received_data["user_card_number"])
+                    print("Card number to delete", received_data["user_card_number"])
+                    result = "Success" if server_answer["success"] else "Failed"
+                    print("Result", result)
             #
             #     elif action == "get_all_user_info":
             #         server_answer = edit_user_info_select_data(received_data["user_card_number"])
