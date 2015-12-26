@@ -36,6 +36,7 @@ class Ui_NewCost(object):
         self.summary_price_lineEdit = QtWidgets.QLineEdit(NewCost)
         self.summary_price_lineEdit.setGeometry(QtCore.QRect(150, 30, 113, 20))
         self.summary_price_lineEdit.setObjectName("summary_price_lineEdit")
+        self.summary_price_lineEdit.setInputMask("D99999")
         self.category_comboBox = QtWidgets.QComboBox(NewCost)
         self.category_comboBox.setGeometry(QtCore.QRect(150, 80, 111, 22))
         self.category_comboBox.setObjectName("category_comboBox")
