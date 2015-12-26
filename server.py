@@ -18,22 +18,23 @@ while True:
     else:
         data_encoded = True
         received_data = json.loads(data.decode('utf-8'))
-        try:
-            print("Client login:", received_data["login"])
-        except:
-            data_encoded = False
-            server_answer = {"success": False}
-            print("none")
+        # try:
+        print("Client login:", received_data["login"])
+        # except:
+            # data_encoded = False
+            # server_answer = {"success": False}
+            # print("none")
 
         if data_encoded:
             print("Action:", received_data["action"])
             if not received_data["auth"]:
                 action = received_data["action"]
 
-            #     if action == "get_my_diagnoses":
-            #         server_answer = get_user_diagnoses(received_data["login"])
-            #         result = "Success" if server_answer["success"] else "Failed"
-            #         print("Result", result)
+                if action == "get_user_info":
+                    server_answer = get_user_info(received_data["login"], received_data["cost_date"])
+                    result = "Success" if server_answer["success"] else "Failed"
+                    print(server_answer)
+                    print("Result", result)
             #
             #     elif action == "get_all_users":
             #         server_answer = get_all_users()

@@ -53,7 +53,7 @@ def get_user_info(login, cost_date):
     for result_cost_number in cur:
         user_cost_number = result_cost_number[0]
 
-    cur.execute('SELECT cost_category, cost_summ, cost_date, cost_comment'
+    cur.execute('SELECT cost_category, cost_money_summ, cost_date, cost_comment'
                 ' FROM costs WHERE cost_number = \'{0}\' AND cost_date LIKE \'%\'\'{1}\''\
                 .format(user_cost_number, cost_date))
 
