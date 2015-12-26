@@ -68,7 +68,7 @@ def get_user_info(login, cost_date):
     else:
         user_cost_numbers_tuple = 0
 
-    cur.execute('SELECT cost_category, cost_money_summ, cost_date, cost_comment'
+    cur.execute('SELECT cost_category, cost_money_summ, cost_date, cost_time, cost_comment'
                 ' FROM costs WHERE cost_number IN {0} AND cost_date LIKE \'{1}\''
                 .format(user_cost_numbers_tuple, cost_date))
 
@@ -95,11 +95,12 @@ def add_new_cost(new_cost_data, login):
         "success": True
     }
     try:
-        cur.execute('INSERT INTO costs(cost_number, cost_category, cost_money_summ, cost_date '
+        cur.execute('INSERT INTO costs(cost_number, cost_category, cost_money_summ, cost_date, cost_time '
                     'VALUES (\'{0}\',\'{1}\', \'{2}\', \'{3}\'))'.format(new_cost_data['cost_number'],
                                                                          new_cost_data['cost_category'],
                                                                          new_cost_data['cost_money_summ'],
-                                                                         new_cost_data['cost_date']))
+                                                                         new_cost_data['cost_date'],
+                                                                         new_cost_data['cost_time']))
 
         cur.execute('INSERT INTO usercosts(cost_number_fk, user_login_fk)'
                     ' VALUES (\'{0}\', \'{1}\')'.format(new_cost_data['cost_number'],
@@ -153,6 +154,28 @@ def registration(registration_result):
 
         con.commit()
     except Exception as E:
+        result["success"] = False
+        con.rollback()
+
+    return result
+
+
+def delete_selected_user(login):
+    global con
+    global cur
+
+    result = {
+        "success": True
+    }
+
+    try:
+        # cur.execute('set transaction isolation level serializable')
+        cur.execute('DELETE FROM usercosts '
+                    'WHERE user_login_fk = {0}'.format(login))
+        cur.execute('DELETE FROM users '
+                    'WHERE user_login = {0}'.format(login))
+        con.commit()
+    except:
         result["success"] = False
         con.rollback()
 
