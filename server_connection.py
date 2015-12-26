@@ -65,3 +65,61 @@ def add_new_cost(login, summ, category, comment, date, time):
     print(data)
     data = json.loads(data.decode('utf-8'))
     return data
+
+
+def get_plane(login, month, year):
+    sock = socket.socket()
+    sock.connect(('127.0.0.1', 9090))
+
+    send_data = {"auth": False,
+                 "login": login,
+                 "action": "get_plane",
+                 "month": month,
+                 "year": year
+                 }
+
+    sock.sendall(json.dumps(send_data).encode('utf-8'))
+
+    data = sock.recv(1024)
+    sock.close()
+    data = json.loads(data.decode('utf-8'))
+    return data
+
+
+def create_plane(login, month, year):
+    sock = socket.socket()
+    sock.connect(('127.0.0.1', 9090))
+
+    send_data = {"auth": False,
+                 "login": login,
+                 "action": "create_plane",
+                 "month": month,
+                 "year": year
+                 }
+
+    sock.sendall(json.dumps(send_data).encode('utf-8'))
+
+    data = sock.recv(1024)
+    sock.close()
+    data = json.loads(data.decode('utf-8'))
+    return data
+
+
+def update_plane(login, month, year, money):
+    sock = socket.socket()
+    sock.connect(('127.0.0.1', 9090))
+
+    send_data = {"auth": False,
+                 "login": login,
+                 "action": "update_plane",
+                 "month": month,
+                 "year": year,
+                 "money": money
+                 }
+    sock.sendall(json.dumps(send_data).encode('utf-8'))
+
+    data = sock.recv(1024)
+    sock.close()
+    data = json.loads(data.decode('utf-8'))
+    print(data)
+    return data

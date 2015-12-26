@@ -12,9 +12,10 @@ import user_form
 import plan_form
 import add_cost_form
 
-from validation import delete_user_request
-
+from validation import delete_user_request, check_plan
+from server_connection import get_plane, create_plane
 login = ""
+cost = 0
 
 class Window(authorization_form.Authorization):
 
@@ -89,6 +90,7 @@ class Window(authorization_form.Authorization):
         self.adm.users_info_table_widget.setCurrentCell(-1, -1)
 
     def show_user_info(self):
+        global login
         self.user = user_form.User()
         self.dialog_usr = QtWidgets.QDialog(None, QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
         self.user.setupUi(self.dialog_usr)
@@ -97,6 +99,8 @@ class Window(authorization_form.Authorization):
         self.user.refresh_data_button.clicked.connect(self.show_user_history)
         self.user.edit_plane_button.clicked.connect(self.show_plan)
         self.user.add_new_cost_button.clicked.connect(self.show_cost)
+
+        check_plan(login)
 
         self.close()
         self.dialog_usr.show()
@@ -115,9 +119,17 @@ class Window(authorization_form.Authorization):
         self.dialog_pln = QtWidgets.QDialog(None, QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
         self.plan.setupUi(self.dialog_pln)
         self.plan.back_button.clicked.connect(self.dialog_pln.close)
+        self.plan.save_button.clicked.connect(self.update_pln)
         self.plan.show_user_plan(login)
 
         self.dialog_pln.show()
+
+    def update_pln(self):
+        global login
+        result = self.plan.update_plan(login)
+        if result:
+            QMessageBox.information(self, 'ок', "план поміняно")
+            self.dialog_pln.close()
 
     def show_cost(self):
         global login

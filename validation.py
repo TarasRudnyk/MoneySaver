@@ -1,3 +1,4 @@
+from datetime import datetime
 from server_connection import *
 
 
@@ -28,10 +29,32 @@ def delete_user_request(login):
     return False
 
 
-def change_user_plan(login, value):
-    return True
+def update_user_plan(login, value):
+    date = datetime.now()
+    month = date.month
+    year = date.year
+    year = str(year)[-2:]
+
+    result = update_plane(login, month, year, value)
+    return result["success"]
+
 
 def get_user_plan(login):
-    return 825
+    date = datetime.now()
+    month = date.month
+    year = date.year
+    year = str(year)[-2:]
+
+    result = get_plane(login, month, year)
+    return result["plane"]
 
 
+def check_plan(login):
+    date = datetime.now()
+    month = date.month
+    year = date.year
+    year = str(year)[-2:]
+
+    exists = get_plane(login, month, year)
+    if exists["plane"] == -1:
+        create_plane(login, month, year)
