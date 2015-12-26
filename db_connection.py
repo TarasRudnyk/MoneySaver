@@ -29,7 +29,7 @@ def authorize_user(login, password):
     authorize_result = {"success": False,
                         "role": 'user'}
 
-    cur.execute('SELECT user_login, user_password, user_role FROM users')
+    cur.execute('SELECT user_login_pk, user_password, user_role FROM users')
     for result in cur:
         if login == result[0] and password == result[1]:
             user_role = result[2]
@@ -39,7 +39,7 @@ def authorize_user(login, password):
     return authorize_result
 
 
-def get_user_info(login):
+def get_user_info(login, cost_date):
     global con
     global cur
 
@@ -54,7 +54,8 @@ def get_user_info(login):
         user_cost_number = result_cost_number[0]
 
     cur.execute('SELECT cost_category, cost_summ, cost_date, cost_comment'
-                ' FROM costs WHERE cost_number = \'{0}\''.format(user_cost_number))
+                ' FROM costs WHERE cost_number = \'{0}\' AND cost_date LIKE \'%\'\'{1}\''\
+                .format(user_cost_number, cost_date))
 
     for result_user_info in cur:
         info_results["cost_category"] = result_user_info[0]
@@ -65,4 +66,7 @@ def get_user_info(login):
     return info_results
 
 
+def add_new_cost():
+    global con
+    global cur
 
