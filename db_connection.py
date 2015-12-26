@@ -131,6 +131,50 @@ def get_plane(login, plane_month):
     return result
 
 
+def create_plane(plane_data):
+    global con
+    global cur
+
+    result = {
+        "success": True
+    }
+
+    try:
+        cur.execute('INSERT INTO plane(user_login_fk, plane_month, plane_money_summ) '
+                    'VALUES (\'{0}\', \'{1}\', \'{2}\')'.format(plane_data['login'],
+                                                                plane_data['month'],
+                                                                plane_data['money']))
+        con.commit()
+    except Exception as E:
+        result['success'] = False
+        con.rollback()
+
+    return result
+
+
+def update_plane(plane_data):
+    global con
+    global cur
+
+    result = {
+        "success": True
+    }
+
+    try:
+        cur.execute('UPDATE plane '
+                    'SET plane_month = \'{0}\' '
+                    'plane_money_summ = \'{1}\' '
+                    'WHERE user_login_fk = \'{2}\''.format(plane_data['month'],
+                                                           plane_data['money'],
+                                                           plane_data['login']))
+        con.commit()
+    except Exception as E:
+        result['success'] = False
+        con.rollback()
+
+    return result
+
+
 def registration(registration_result):
     global con
     global cur
