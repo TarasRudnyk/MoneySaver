@@ -94,16 +94,21 @@ def add_new_cost(new_cost_data, login):
     result = {
         "success": True
     }
+
+    cur.execute('SELECT MAX(cost_number) FROM costs')
+    for result_cost_number in cur:
+        cost_number = result_cost_number + 1
+
     try:
         cur.execute('INSERT INTO costs(cost_number, cost_category, cost_money_summ, cost_date, cost_time '
-                    'VALUES (\'{0}\',\'{1}\', \'{2}\', \'{3}\'))'.format(new_cost_data['cost_number'],
+                    'VALUES (\'{0}\',\'{1}\', \'{2}\', \'{3}\'))'.format(cost_number,
                                                                          new_cost_data['cost_category'],
                                                                          new_cost_data['cost_money_summ'],
                                                                          new_cost_data['cost_date'],
                                                                          new_cost_data['cost_time']))
 
         cur.execute('INSERT INTO usercosts(cost_number_fk, user_login_fk)'
-                    ' VALUES (\'{0}\', \'{1}\')'.format(new_cost_data['cost_number'],
+                    ' VALUES (\'{0}\', \'{1}\')'.format(cost_number,
                                                         login))
 
         con.commit()
