@@ -49,7 +49,7 @@ def get_user_info(login, cost_date):
                     "cost_date": '',
                     "cost_comment": ''}
 
-    cur.execute('SELECT cost_number FROM usercosts WHERE user_login_fk = \'{0}\''.format(login))
+    cur.execute('SELECT cost_number_fk FROM usercosts WHERE user_login_fk = \'{0}\''.format(login))
     for result_cost_number in cur:
         user_cost_number = result_cost_number[0]
 
@@ -107,3 +107,4 @@ def get_plane(login, plane_month):
         result['success'] = False
 
     return result
+
