@@ -54,13 +54,13 @@ class Registration(QtWidgets.QWidget, registration.Ui_Registration):
             result = False
 
         if not name.isalpha():
-            self.nameError.setText("повідомлення")
+            self.nameError.setText("Введіть, будь ласка, тільки літери!")
         if len(name) < 2:
             self.nameError.setText("Ім'я не може бути менше 2 символів!")
             result = False
 
         if not last_name.isalpha():
-            self.lastNameError.setText("повідомлення")
+            self.lastNameError.setText("Введіть, будь ласка, тільки літери")
             result = False
         if len(last_name) < 2:
             self.lastNameError.setText("Прізвище не може бути менше 2 символів!")
