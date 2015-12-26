@@ -33,18 +33,17 @@ while True:
                 if action == "get_user_info":
                     server_answer = get_user_info(received_data["login"], received_data["cost_date"])
                     result = "Success" if server_answer["success"] else "Failed"
-                    print(server_answer)
                     print("Result", result)
-            #
-            #     elif action == "get_all_users":
-            #         server_answer = get_all_users()
-            #         result = "Success" if server_answer["success"] else "Failed"
-            #         print("Result", result)
-            #
-            #     elif action == "add_new_user":
-            #         server_answer = add_new_user(received_data["user_data"])
-            #         result = "Success" if server_answer["success"] else "Failed"
-            #         print("Result", result)
+
+                elif action == "get_all_users":
+                    server_answer = get_all_users()
+                    result = "Success" if server_answer["success"] else "Failed"
+                    print("Result", result)
+
+                elif action == "add_new_cost":
+                    server_answer = add_new_cost(received_data["login"], received_data["cost_data"])
+                    result = "Success" if server_answer["success"] else "Failed"
+                    print("Result", result)
             #
             #     elif action == "delete_user":
             #         server_answer = delete_selected_users(received_data["user_card_number"])

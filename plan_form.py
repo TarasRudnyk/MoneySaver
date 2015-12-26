@@ -7,7 +7,6 @@ from validation import change_user_plan, get_user_plan
 
 
 class Plan(QtWidgets.QWidget, plan_ui.Ui_PlanWindow):
-    pass
     def change_plan(self, login):
         value = self.money_lineEdit.text()
         change_user_plan(login, value)

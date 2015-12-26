@@ -87,7 +87,7 @@ def get_user_info(login, cost_date):
     return info_results
 
 
-def add_new_cost(new_cost_data, login):
+def add_new_cost(login, new_cost_data):
     global con
     global cur
 
@@ -97,25 +97,26 @@ def add_new_cost(new_cost_data, login):
 
     cur.execute('SELECT MAX(cost_number) FROM costs')
     for result_cost_number in cur:
-        cost_number = result_cost_number + 1
+        cost_number = result_cost_number[0] + 1
+    print(new_cost_data)
+    # try:
+    cur.execute('INSERT INTO costs(cost_number, cost_category, cost_money_summ, cost_comment, cost_date, cost_time) '
+                'VALUES (\'{0}\',\'{1}\', \'{2}\', \'{3}\', \'{4}\', \'{5}\')'.format(cost_number,
+                                                                     new_cost_data['cost_category'],
+                                                                     new_cost_data['cost_money_summ'],
+                                                                     new_cost_data['cost_comment'],
+                                                                     new_cost_data['cost_date'],
+                                                                     new_cost_data["cost_time"]))
 
-    try:
-        cur.execute('INSERT INTO costs(cost_number, cost_category, cost_money_summ, cost_comment, cost_date, cost_time) '
-                    'VALUES (\'{0}\',\'{1}\', \'{2}\', \'{3}\', \'{4}\', \'{5}\'))'.format(cost_number,
-                                                                         new_cost_data['cost_category'],
-                                                                         new_cost_data['cost_money_summ'],
-                                                                         new_cost_data['cost_comment'],
-                                                                         new_cost_data['cost_date'],
-                                                                         new_cost_data['cost_time']))
+    cur.execute('INSERT INTO usercosts(cost_number_fk, user_login_fk)'
+                ' VALUES (\'{0}\', \'{1}\')'.format(cost_number,
+                                                    login))
 
-        cur.execute('INSERT INTO usercosts(cost_number_fk, user_login_fk)'
-                    ' VALUES (\'{0}\', \'{1}\')'.format(cost_number,
-                                                        login))
-
-        con.commit()
-    except Exception as E:
-        result['success'] = False
-        con.rollback()
+    con.commit()
+    # except Exception as E:
+    #     print(E)
+    #     result['success'] = False
+    #     con.rollback()
 
     return result
 

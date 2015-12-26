@@ -19,10 +19,12 @@ login = ""
 class Window(authorization_form.Authorization):
 
     def __init__(self):
+        global login
         super().__init__()
 
         self.setupUi(self)
         self.show()
+        login = ""
         self.pushButton.clicked.connect(self.show_user_or_admin_form)
         self.pushButton_2.clicked.connect(self.show_registration)
         self.LoginlineEdit.returnPressed.connect(self.pushButton.click)
@@ -49,10 +51,8 @@ class Window(authorization_form.Authorization):
     def show_user_or_admin_form(self):
         global login
         result = self.validate_auth_data()
-        print(result)
         if result["result"]:
             login = self.LoginlineEdit.text()
-            print(login)
             if result["role"] == "admin":
                 self.show_admin()
             else:
@@ -101,7 +101,7 @@ class Window(authorization_form.Authorization):
         self.close()
         self.dialog_usr.show()
         self.dialog_usr.exec()
-        self.show()
+        self.destroy()
 
     def show_user_history(self):
         global login
@@ -121,12 +121,20 @@ class Window(authorization_form.Authorization):
 
     def show_cost(self):
         global login
-        self.cost = add_cost_form.Add_cost()
+        self.cost = add_cost_form.AddCost()
         self.dialog_cst = QtWidgets.QDialog(None, QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
         self.cost.setupUi(self.dialog_cst)
         self.cost.back_button.clicked.connect(self.dialog_cst.close)
+        self.cost.save_button.clicked.connect(self.adding_cost)
 
         self.dialog_cst.show()
+
+    def adding_cost(self):
+        global login
+        result = self.cost.add_cost(login)
+        if result:
+            self.dialog_cst.close()
+
 
 
 if __name__ == '__main__':
