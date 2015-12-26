@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>400</width>
-    <height>332</height>
+    <height>298</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>Сума витрат(грн)</string>
+    <string>Сума витрат (грн)</string>
    </property>
   </widget>
   <widget class="QLabel" name="category_label">
@@ -43,24 +43,11 @@
     <string>Категорія</string>
    </property>
   </widget>
-  <widget class="QLabel" name="date_label">
-   <property name="geometry">
-    <rect>
-     <x>20</x>
-     <y>140</y>
-     <width>71</width>
-     <height>16</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>Дата</string>
-   </property>
-  </widget>
   <widget class="QLabel" name="comment_label">
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>200</y>
+     <y>160</y>
      <width>71</width>
      <height>16</height>
     </rect>
@@ -73,7 +60,7 @@
    <property name="geometry">
     <rect>
      <x>230</x>
-     <y>280</y>
+     <y>240</y>
      <width>131</width>
      <height>23</height>
     </rect>
@@ -86,7 +73,7 @@
    <property name="geometry">
     <rect>
      <x>20</x>
-     <y>280</y>
+     <y>240</y>
      <width>131</width>
      <height>23</height>
     </rect>
@@ -155,52 +142,11 @@
     </property>
    </item>
   </widget>
-  <widget class="QDateEdit" name="date_edit">
-   <property name="geometry">
-    <rect>
-     <x>150</x>
-     <y>140</y>
-     <width>110</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <property name="dateTime">
-    <datetime>
-     <hour>0</hour>
-     <minute>0</minute>
-     <second>0</second>
-     <year>2015</year>
-     <month>1</month>
-     <day>1</day>
-    </datetime>
-   </property>
-   <property name="maximumDate">
-    <date>
-     <year>2025</year>
-     <month>12</month>
-     <day>31</day>
-    </date>
-   </property>
-   <property name="minimumDate">
-    <date>
-     <year>2015</year>
-     <month>1</month>
-     <day>1</day>
-    </date>
-   </property>
-   <property name="date">
-    <date>
-     <year>2015</year>
-     <month>1</month>
-     <day>1</day>
-    </date>
-   </property>
-  </widget>
   <widget class="QTextEdit" name="comment_textEdit">
    <property name="geometry">
     <rect>
      <x>150</x>
-     <y>180</y>
+     <y>140</y>
      <width>241</width>
      <height>61</height>
     </rect>
