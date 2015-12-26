@@ -87,13 +87,11 @@ while True:
             #         print("Result", result)
 
             else:
-                server_answer = authorize_user(received_data["login"], received_data["password"])
+                server_answer = authorize_user(received_data["login"],
+                                               received_data["password"])
                 result = "Success" if server_answer["success"] else "Failed"
                 print("Result:", result)
                 print("Role:", server_answer["role"])
-                print(received_data)
-                # server_answer = {"test": "ok"}
-                print(server_answer)
 
     conn.sendall(json.dumps(server_answer).encode('utf-8'))
     print("Close connection")

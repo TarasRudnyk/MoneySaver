@@ -1,5 +1,5 @@
 from PyQt5 import QtWidgets
-
+from PyQt5.QtWidgets import QMessageBox
 from views import authorization
 
 from validation import auth_request
@@ -25,8 +25,8 @@ class Authorization(QtWidgets.QWidget, authorization.Ui_Authorization):
             result = False
 
         if result:
-            if auth_request(login, password):
-                return {"success": True,
-                        "role": "admi"}
-
-        return {"success": False}
+            auth = auth_request(login, password)
+            if not auth["result"]:
+                QMessageBox.information(self, 'Помилка', auth["message"])
+                return {"result": False}
+            return auth

@@ -47,14 +47,16 @@ class Window(authorization_form.Authorization):
             self.dialog_reg.close()
 
     def show_user_or_admin_form(self):
+        global login
         result = self.validate_auth_data()
-        if result["success"]:
+        print(result)
+        if result["result"]:
+            login = self.LoginlineEdit.text()
+            print(login)
             if result["role"] == "admin":
                 self.show_admin()
             else:
                 self.show_user_info()
-        self.LoginlineEdit.setText("")
-        self.PasswordlineEdit_2.setText("")
 
 
     def show_admin(self):
