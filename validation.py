@@ -10,7 +10,7 @@ def auth_request(login, password):
         if not result["success"]:
             return {
                 "result": False,
-                "message": "Перевірте правильність логіна і пароля."
+                "message": "Please check login and password."
             }
         return {
             "result": True,
@@ -19,7 +19,7 @@ def auth_request(login, password):
     except Exception as auth_exception:
         return {
             "result": False,
-            "message": "Виникли проблеми з сервером.\nБудь ласка, спробуйте пізніше."
+            "message": "There is problems with server.\n Please, try later."
         }
 
 
@@ -29,7 +29,7 @@ def reg_request(login, password, phone, name, last_name, email):
         if not result["success"]:
             return {
                 "result": False,
-                "message": "Такий логін вже є в базі"
+                "message": "This login already exists in database"
             }
         return {
             "result": True,
@@ -39,7 +39,7 @@ def reg_request(login, password, phone, name, last_name, email):
     except Exception as reg_exception:
         return {
             "result": False,
-            "message": "Виникли проблеми з сервером.\nБудь ласка, спробуйте пізніше."
+            "message": "There is problems with server.\n Please, try later."
         }
 
 
@@ -47,7 +47,7 @@ def delete_user_request(login):
     try:
         delete_selected_user(login)
     except Exception as E:
-        QMessageBox.information(self, 'no', "Виникли проблеми з сервером.\nБудь ласка, спробуйте пізніше.")
+        QMessageBox.information(self, 'no', "There is problems with server.\n Please, try later.")
         return False
     return True
 
@@ -60,7 +60,7 @@ def update_user_plan(login, value):
     try:
         result = update_plane(login, month, year, value)
     except Exception as E:
-        QMessageBox.information(self, 'no', "Виникли проблеми з сервером.\nБудь ласка, спробуйте пізніше.")
+        QMessageBox.information(self, 'no', "There is problems with server.\n Please, try later.")
         result = {
             "success": False
         }
@@ -93,7 +93,7 @@ def check_plan(login):
         try:
             create_plane(login, month, year)
         except:
-            QMessageBox.information(self, 'помилка', "помилка на сервері")
+            QMessageBox.information(self, 'Error', "There is a problem in a server")
 
 
 
@@ -107,14 +107,14 @@ def get_balance(login):
     try:
         costs = select_all_user_costs(login, date)
     except Exception as E:
-        QMessageBox.information(self, 'помилка', "помилка на сервері")
+        QMessageBox.information(self, 'Error', "There is a problem in a server")
         costs = {
             "sum_cost": [0]
         }
     try:
         plane = get_plane(login, month, year)
     except Exception as E:
-        QMessageBox.information(self, 'помилка', "помилка на сервері")
+        QMessageBox.information(self, 'Error', "There is a problem in a server")
         plane = {
             "plane": 0
         }

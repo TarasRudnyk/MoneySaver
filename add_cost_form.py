@@ -33,11 +33,11 @@ class AddCost(QtWidgets.QWidget, user_new_cost_ui.Ui_NewCost):
                 }
             if result["success"]:
                 bal = get_balance(login)
-                message = "витрату доданою\nваш баланс: {}".format(bal)
-                QMessageBox.information(self, 'успіх', message)
+                message = "cost has been added\nyours balance: {}".format(bal)
+                QMessageBox.information(self, 'success', message)
                 return True
             else:
-                QMessageBox.information(self, 'Помилка', "спробуйте пініше")
+                QMessageBox.information(self, 'Error', "Please try later")
         else:
-            QMessageBox.information(self, 'Помилка', "Заповніть поле 'Сума витрати'!")
+            QMessageBox.information(self, 'Error', "Please write in 'Costs sum'!")
             return False

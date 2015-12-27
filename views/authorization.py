@@ -51,9 +51,9 @@ class Ui_Authorization(object):
 
     def retranslateUi(self, Authorization):
         _translate = QtCore.QCoreApplication.translate
-        Authorization.setWindowTitle(_translate("Authorization", "Form"))
-        self.loginLabel.setText(_translate("Authorization", "Введіть логін"))
-        self.passwordLabel.setText(_translate("Authorization", "Введіть пароль"))
-        self.pushButton.setText(_translate("Authorization", "Увійти"))
-        self.pushButton_2.setText(_translate("Authorization", "Реєстрація"))
+        Authorization.setWindowTitle(_translate("Authorization", "Authorization"))
+        self.loginLabel.setText(_translate("Authorization", "Enter login"))
+        self.passwordLabel.setText(_translate("Authorization", "Enter password"))
+        self.pushButton.setText(_translate("Authorization", "Log in"))
+        self.pushButton_2.setText(_translate("Authorization", "Registration"))
 

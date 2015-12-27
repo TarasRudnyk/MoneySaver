@@ -54,10 +54,10 @@ class Ui_AdminWindow(object):
 
     def retranslateUi(self, AdminWindow):
         _translate = QtCore.QCoreApplication.translate
-        AdminWindow.setWindowTitle(_translate("AdminWindow", "Сторінка адміністратора"))
-        self.back_button.setText(_translate("AdminWindow", "Вийти"))
-        self.pushButton.setText(_translate("AdminWindow", "Оновити дані"))
-        self.remove_user_button.setText(_translate("AdminWindow", "Видалити"))
+        AdminWindow.setWindowTitle(_translate("AdminWindow", "Admin page"))
+        self.back_button.setText(_translate("AdminWindow", "Exit"))
+        self.pushButton.setText(_translate("AdminWindow", "Refresh data"))
+        self.remove_user_button.setText(_translate("AdminWindow", "Delete"))
         self.users_info_table_widget.setSortingEnabled(True)
         # item = self.users_info_table_widget.horizontalHeaderItem(0)
         # item.setText(_translate("AdminWindow", "Логін"))

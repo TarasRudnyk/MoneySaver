@@ -89,14 +89,14 @@ class Window(authorization_form.Authorization):
                 try:
                     if delete_user_request(login):
                         self.adm.fill_table()
-                        QMessageBox.information(self, 'Видалення', "Користувач видалений")
+                        QMessageBox.information(self, 'Deleting', "User has been removed successfully")
                 except Exception as delete_exception:
-                    QMessageBox.information(self, 'Видалення', "Виникли проблеми при видаленні.\nБудь ласка,"
-                                                               " спробуйте повторити пізніше.")
+                    QMessageBox.information(self, 'Deleting', "Error.\nPlease,"
+                                                               " try later.")
             else:
-                QMessageBox.information(self, 'Видалення', "видалення відмінено")
+                QMessageBox.information(self, 'Deleting', "Deleting has been canceled")
         else:
-            QMessageBox.information(self, 'Помилка', "Виберіть користувача")
+            QMessageBox.information(self, 'Error', "Please select any user")
 
         self.adm.users_info_table_widget.setCurrentCell(-1, -1)
 
@@ -139,7 +139,7 @@ class Window(authorization_form.Authorization):
         global login
         result = self.plan.update_plan(login)
         if result:
-            QMessageBox.information(self, 'ок', "план поміняно")
+            QMessageBox.information(self, 'ok', "plane has been changed")
             self.dialog_pln.close()
 
     def show_cost(self):

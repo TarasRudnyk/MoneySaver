@@ -21,11 +21,11 @@ class Admin(QtWidgets.QWidget, admin_ui.Ui_AdminWindow):
         self.users_info_table_widget.setRowCount(raw)
         self.users_info_table_widget.setColumnCount(5)
 
-        self.users_info_table_widget.setHorizontalHeaderItem(0, QTableWidgetItem("Логін"))
-        self.users_info_table_widget.setHorizontalHeaderItem(1, QTableWidgetItem("Прізвище"))
-        self.users_info_table_widget.setHorizontalHeaderItem(2, QTableWidgetItem("Ім\'я"))
-        self.users_info_table_widget.setHorizontalHeaderItem(3, QTableWidgetItem("Номер телефону"))
-        self.users_info_table_widget.setHorizontalHeaderItem(4, QTableWidgetItem("Емейл"))
+        self.users_info_table_widget.setHorizontalHeaderItem(0, QTableWidgetItem("Login"))
+        self.users_info_table_widget.setHorizontalHeaderItem(1, QTableWidgetItem("Last name"))
+        self.users_info_table_widget.setHorizontalHeaderItem(2, QTableWidgetItem("First name"))
+        self.users_info_table_widget.setHorizontalHeaderItem(3, QTableWidgetItem("Phone number"))
+        self.users_info_table_widget.setHorizontalHeaderItem(4, QTableWidgetItem("Email"))
 
         for i in range(raw):
             self.users_info_table_widget.setItem(i, 0, QTableWidgetItem(request["users_logins"][i]))

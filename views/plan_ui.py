@@ -39,9 +39,9 @@ class Ui_PlanWindow(object):
 
     def retranslateUi(self, PlanWindow):
         _translate = QtCore.QCoreApplication.translate
-        PlanWindow.setWindowTitle(_translate("PlanWindow", "План"))
-        self.money_label.setText(_translate("PlanWindow", "Введіть суму (грн)"))
-        self.back_button.setText(_translate("PlanWindow", "Назад"))
-        self.save_button.setText(_translate("PlanWindow", "Зберегти"))
-        self.label.setText(_translate("PlanWindow", "Ваш поточний фінансовий план: "))
+        PlanWindow.setWindowTitle(_translate("PlanWindow", "Plane"))
+        self.money_label.setText(_translate("PlanWindow", "Enter sum (grn)"))
+        self.back_button.setText(_translate("PlanWindow", "Back"))
+        self.save_button.setText(_translate("PlanWindow", "Save"))
+        self.label.setText(_translate("PlanWindow", "Yours current finance plane: "))
 

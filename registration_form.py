@@ -29,57 +29,57 @@ class Registration(QtWidgets.QWidget, registration.Ui_Registration):
         email = self.emailLineEdit.text()
 
         if len(login) < 5:
-            self.loginError.setText("Логін має бути не менше 5 символів!")
+            self.loginError.setText("Login should be not less than 5 symbols!")
             result = False
         if len(login) == 0:
-            self.loginError.setText("Це поле не може бути пустим!")
+            self.loginError.setText("This field can't be empty")
             result = False
 
         if len(password) < 5:
-            self.passwordError.setText("Пароль має бути не менше 5 символів!")
+            self.passwordError.setText("Password should be not less than 5 symbols!")
             result = False
         if len(password) == 0:
-            self.passwordError.setText("Це поле не може бути пустим!")
+            self.passwordError.setText("This field can't be empty")
             result = False
 
         if password != repeat_password:
-            self.repeatPassworError.setText("Введіть однакові паролі!")
+            self.repeatPassworError.setText("Password and repeated password is not match!")
             result = False
         if len(repeat_password) == 0:
-            self.repeatPassworError.setText("Це поле не може бути пустим!")
+            self.repeatPassworError.setText("This field can't be empty!")
             result = False
 
         if len(phone) == 0:
-            self.phoneNumberError.setText("Це поле не може бути пустим!")
+            self.phoneNumberError.setText("This field can't be empty!")
             result = False
 
         if not name.isalpha():
-            self.nameError.setText("Введіть, будь ласка, тільки літери!")
+            self.nameError.setText("Please enter only letters!")
         if len(name) < 2:
-            self.nameError.setText("Ім'я не може бути менше 2 символів!")
+            self.nameError.setText("First name can't be lass than 2 letters")
             result = False
 
         if not last_name.isalpha():
-            self.lastNameError.setText("Введіть, будь ласка, тільки літери")
+            self.lastNameError.setText("Please enter only letters!")
             result = False
         if len(last_name) < 2:
-            self.lastNameError.setText("Прізвище не може бути менше 2 символів!")
+            self.lastNameError.setText("Last name can't be less than 2 letters")
             result = False
 
         if not check_email(email):
-            self.EmailError.setText("Ви ввели некоректну адресу пошти!!")
+            self.EmailError.setText("Please enter correct email address")
             result = False
         if len(email) == 0:
-            self.EmailError.setText("Це поле не може бути пустим!")
+            self.EmailError.setText("This field can't be empty!")
             result = False
 
         if result:
             request = reg_request(login, password, phone, name, last_name, email)
             if request["result"]:
-                QMessageBox.information(self, 'успіх', "користувача зареєстровано")
+                QMessageBox.information(self, 'Success', "user registered successfully")
                 return True
             else:
-                QMessageBox.information(self, 'помилка', request["message"])
+                QMessageBox.information(self, 'Error', request["message"])
         return False
 
 
