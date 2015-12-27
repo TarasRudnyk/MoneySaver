@@ -19,7 +19,7 @@ while True:
         data_encoded = True
         received_data = json.loads(data.decode('utf-8'))
         # try:
-        print("Client login:", received_data["login"])
+        # print("Client login:", received_data["login"])
         # except:
             # data_encoded = False
             # server_answer = {"success": False}
@@ -66,11 +66,11 @@ while True:
             #         print("User card number", received_data["user_card_number"])
             #         result = "Success" if server_answer["success"] else "Failed"
             #         print("Result", result)
-            #
-            #     elif action == "select_all_diseases":
-            #         server_answer = edit_user_select_all_diseases()
-            #         result = "Success" if server_answer["success"] else "Failed"
-            #         print("Result", result)
+
+                elif action == "registration":
+                    server_answer = registration(received_data["user_data"])
+                    result = "Success" if server_answer["success"] else "Failed"
+                    print("Result", result)
             #
             #     elif action == "get_diagnoses_count":
             #         server_answer = get_diagnose_number()

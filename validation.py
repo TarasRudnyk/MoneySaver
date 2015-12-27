@@ -21,8 +21,25 @@ def auth_request(login, password):
         }
 
 
-def reg_request(login, password, repeat_password, phone, name, last_name, email):
-    return True
+def reg_request(login, password, phone, name, last_name, email):
+    try:
+        result = registration(login, password, name, last_name, phone, email)
+        if not result["success"]:
+            return {
+                "result": False,
+                "message": "Такий логін вже є в базі"
+            }
+        return {
+            "result": True,
+            "message": ""
+        }
+
+    except Exception as reg_exception:
+        return {
+            "result": False,
+            "message": "Виникли проблеми з сервером.\nБудь ласка, спробуйте пізніше."
+        }
+
 
 
 def delete_user_request(login):

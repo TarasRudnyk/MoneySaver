@@ -17,6 +17,7 @@ from server_connection import get_plane, create_plane
 login = ""
 cost = 0
 
+
 class Window(authorization_form.Authorization):
 
     def __init__(self):
