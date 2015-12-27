@@ -281,7 +281,7 @@ def get_all_users():
     return users_result
 
 
-def select_all_users_costs(login):
+def select_all_users_costs(login, cost_date):
     global con
     global cur
 
@@ -302,8 +302,8 @@ def select_all_users_costs(login):
         user_cost_numbers_tuple = 0
 
     cur.execute('SELECT SUM(cost_money_summ)'
-                ' FROM costs WHERE cost_number IN {0} '
-                .format(user_cost_numbers_tuple))
+                ' FROM costs WHERE cost_number IN {0} AND cost_date LIKE \'{1}\' '
+                .format(user_cost_numbers_tuple, cost_date))
     for result_sum in cur:
         costs_result["sum_cost"] = result_sum
 
