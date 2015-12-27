@@ -74,10 +74,12 @@ class Registration(QtWidgets.QWidget, registration.Ui_Registration):
             result = False
 
         if result:
-            if reg_request(login, password, repeat_password, phone, name, last_name, email):
-                QMessageBox.information(self, 'Зареєстровано', "Користувача успішно зареєстровано!")
+            request = reg_request(login, password, phone, name, last_name, email)
+            if request["result"]:
+                QMessageBox.information(self, 'успіх', "користувача зареєстровано")
                 return True
-
+            else:
+                QMessageBox.information(self, 'помилка', request["message"])
         return False
 
 
