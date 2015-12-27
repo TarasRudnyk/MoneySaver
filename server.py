@@ -60,23 +60,21 @@ while True:
                     server_answer = update_plane(received_data)
                     result = "Success" if server_answer["success"] else "Failed"
                     print("Result", result)
-            #
-            #     elif action == "get_user_diagnoses_for_admin":
-            #         server_answer = edit_user_info_select_diagnoses(received_data["user_card_number"])
-            #         print("User card number", received_data["user_card_number"])
-            #         result = "Success" if server_answer["success"] else "Failed"
-            #         print("Result", result)
+
+                elif action == "get_all_users":
+                    server_answer = get_all_users()
+                    result = "Success" if server_answer["success"] else "Failed"
+                    print("Result", result)
 
                 elif action == "registration":
                     server_answer = registration(received_data["user_data"])
                     result = "Success" if server_answer["success"] else "Failed"
                     print("Result", result)
-            #
-            #     elif action == "get_diagnoses_count":
-            #         server_answer = get_diagnose_number()
-            #         print("Diagnoses count", server_answer["count"])
-            #         result = "Success" if server_answer["success"] else "Failed"
-            #         print("Result", result)
+
+                elif action == "delete_selected_user":
+                    server_answer = delete_selected_user(received_data["login"])
+                    result = "Success" if server_answer["success"] else "Failed"
+                    print("Result", result)
             #
             #     elif action == "add_user_diagnose":
             #         server_answer = edit_user_info_add_diagnose(received_data["diagnose_data"],

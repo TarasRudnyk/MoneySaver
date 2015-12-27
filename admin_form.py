@@ -2,13 +2,22 @@ from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QTableWidgetItem
 
 from views import admin_ui
+# from validation import get_all_users
+from server_connection import get_all_users
 
 
 class Admin(QtWidgets.QWidget, admin_ui.Ui_AdminWindow):
 
     def fill_table(self):
         self.users_info_table_widget.clear()
-        raw = 3
+
+        try:
+            request = get_all_users()
+        except:
+            request = {
+                'users_logins': []
+            }
+        raw = len(request['users_logins'])
         self.users_info_table_widget.setRowCount(raw)
         self.users_info_table_widget.setColumnCount(5)
 
@@ -19,11 +28,11 @@ class Admin(QtWidgets.QWidget, admin_ui.Ui_AdminWindow):
         self.users_info_table_widget.setHorizontalHeaderItem(4, QTableWidgetItem("Емейл"))
 
         for i in range(raw):
-            self.users_info_table_widget.setItem(i, 0, QTableWidgetItem("login" + str(i)))
-            self.users_info_table_widget.setItem(i, 1, QTableWidgetItem("last name"))
-            self.users_info_table_widget.setItem(i, 2, QTableWidgetItem("name"))
-            self.users_info_table_widget.setItem(i, 3, QTableWidgetItem("number"))
-            self.users_info_table_widget.setItem(i, 4, QTableWidgetItem("email"))
+            self.users_info_table_widget.setItem(i, 0, QTableWidgetItem(request["users_logins"][i]))
+            self.users_info_table_widget.setItem(i, 1, QTableWidgetItem(request["users_last_names"][i]))
+            self.users_info_table_widget.setItem(i, 2, QTableWidgetItem(request["users_first_names"][i]))
+            self.users_info_table_widget.setItem(i, 3, QTableWidgetItem(request["users_phone_numbers"][i]))
+            self.users_info_table_widget.setItem(i, 4, QTableWidgetItem(request["users_emails"][i]))
 
 
 

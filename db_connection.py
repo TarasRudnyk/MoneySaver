@@ -235,11 +235,12 @@ def delete_selected_user(login):
     try:
         # cur.execute('set transaction isolation level serializable')
         cur.execute('DELETE FROM usercosts '
-                    'WHERE user_login_fk = {0}'.format(login))
+                    'WHERE user_login_fk = \'{0}\''.format(login))
         cur.execute('DELETE FROM users '
-                    'WHERE user_login = {0}'.format(login))
+                    'WHERE user_login_pk = \'{0}\''.format(login))
         con.commit()
-    except:
+    except Exception as E:
+        print(E)
         result["success"] = False
         con.rollback()
 

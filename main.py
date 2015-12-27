@@ -68,6 +68,7 @@ class Window(authorization_form.Authorization):
         self.adm.fill_table()
 
         self.adm.back_button.clicked.connect(self.dialog_adm.close)
+        self.adm.pushButton.clicked.connect(self.adm.fill_table)
         self.adm.remove_user_button.clicked.connect(self.delete_user)
 
         self.close()
@@ -76,15 +77,24 @@ class Window(authorization_form.Authorization):
         self.show()
 
     def delete_user(self):
+        global login
         row = self.adm.users_info_table_widget.currentRow()
         if row != -1:
-            login = self.adm.users_info_table_widget.item(row, 0).text()
-            try:
-                if delete_user_request(login):
-                    QMessageBox.information(self, 'Видалення', "Користувач видалений")
-            except Exception as delete_exception:
-                QMessageBox.information(self, 'Видалення', "Виникли проблеми при видаленні.\nБудь ласка,"
-                                                           " спробуйте повторити пізніше.")
+            reply = QMessageBox.question(self, 'Message',
+                                         "Are you sure to delete user {0}?".format(login),
+                                         QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+
+            if reply == QMessageBox.Yes:
+                login = self.adm.users_info_table_widget.item(row, 0).text()
+                try:
+                    if delete_user_request(login):
+                        self.adm.fill_table()
+                        QMessageBox.information(self, 'Видалення', "Користувач видалений")
+                except Exception as delete_exception:
+                    QMessageBox.information(self, 'Видалення', "Виникли проблеми при видаленні.\nБудь ласка,"
+                                                               " спробуйте повторити пізніше.")
+            else:
+                QMessageBox.information(self, 'Видалення', "видалення відмінено")
         else:
             QMessageBox.information(self, 'Помилка', "Виберіть користувача")
 
