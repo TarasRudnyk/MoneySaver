@@ -80,14 +80,14 @@ class Window(authorization_form.Authorization):
         global login
         row = self.adm.users_info_table_widget.currentRow()
         if row != -1:
+            login1 = self.adm.users_info_table_widget.item(row, 0).text()
             reply = QMessageBox.question(self, 'Message',
-                                         "Are you sure to delete user {0}?".format(login),
+                                         "Are you sure to delete user {0}?".format(login1),
                                          QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
 
             if reply == QMessageBox.Yes:
-                login = self.adm.users_info_table_widget.item(row, 0).text()
                 try:
-                    if delete_user_request(login):
+                    if delete_user_request(login1):
                         self.adm.fill_table()
                         QMessageBox.information(self, 'Deleting', "User has been removed successfully")
                 except Exception as delete_exception:

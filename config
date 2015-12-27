@@ -1,4 +1,4 @@
-name: chernenko
+name: taras
 password: orcl
 server and port: localhost
 database service: orcl
