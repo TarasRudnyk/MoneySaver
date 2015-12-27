@@ -86,7 +86,6 @@ def get_user_info(login, cost_date):
     info_results['cost_date'] = cost_dates
     info_results['cost_time'] = cost_time
     info_results['cost_comment'] = cost_comments
-
     return info_results
 
 

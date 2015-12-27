@@ -62,9 +62,12 @@ class Window(authorization_form.Authorization):
 
 
     def show_admin(self):
+        global login
         self.adm = admin_form.Admin()
         self.dialog_adm = QtWidgets.QDialog(None, QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
+        self.dialog_adm.setWindowTitle("MoneySaver - admin page - " + login)
         self.adm.setupUi(self.dialog_adm)
+
         self.adm.fill_table()
 
         self.adm.back_button.clicked.connect(self.dialog_adm.close)
@@ -90,6 +93,9 @@ class Window(authorization_form.Authorization):
                     if delete_user_request(login1):
                         self.adm.fill_table()
                         QMessageBox.information(self, 'Deleting', "User has been removed successfully")
+                    else:
+                        QMessageBox.information(self, 'no', "There is problems with server.\n Please, try later.")
+
                 except Exception as delete_exception:
                     QMessageBox.information(self, 'Deleting', "Error.\nPlease,"
                                                                " try later.")
@@ -104,6 +110,7 @@ class Window(authorization_form.Authorization):
         global login
         self.user = user_form.User()
         self.dialog_usr = QtWidgets.QDialog(None, QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
+        self.dialog_usr.setWindowTitle("MoneySaver - user page - " + login)
         self.user.setupUi(self.dialog_usr)
         self.user.confirm_button.clicked.connect(self.show_user_history)
         self.user.back_button.clicked.connect(self.dialog_usr.close)
@@ -128,6 +135,7 @@ class Window(authorization_form.Authorization):
         global login
         self.plan = plan_form.Plan()
         self.dialog_pln = QtWidgets.QDialog(None, QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
+        self.dialog_pln.setWindowTitle("MoneySaver - plan page - " + login)
         self.plan.setupUi(self.dialog_pln)
         self.plan.back_button.clicked.connect(self.dialog_pln.close)
         self.plan.save_button.clicked.connect(self.update_pln)
@@ -146,6 +154,7 @@ class Window(authorization_form.Authorization):
         global login
         self.cost = add_cost_form.AddCost()
         self.dialog_cst = QtWidgets.QDialog(None, QtCore.Qt.WindowCloseButtonHint | QtCore.Qt.WindowMinimizeButtonHint)
+        self.dialog_cst.setWindowTitle("MoneySaver - adding cost page - " + login)
         self.cost.setupUi(self.dialog_cst)
         self.cost.back_button.clicked.connect(self.dialog_cst.close)
         self.cost.save_button.clicked.connect(self.adding_cost)

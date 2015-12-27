@@ -23,7 +23,7 @@ class AddCost(QtWidgets.QWidget, user_new_cost_ui.Ui_NewCost):
             summ = summ.lstrip("0")
             date = datetime.datetime.now()
             time = "{}:{}:{}".format(date.hour, date.minute, date.second)
-            date = "{}-{}-{}".format(date.day, date.month, date.year)
+            date = date.strftime('%d-%b-%Y')
 
             try:
                 result = add_new_cost(login, summ, category, comment, date, time)
@@ -33,8 +33,9 @@ class AddCost(QtWidgets.QWidget, user_new_cost_ui.Ui_NewCost):
                 }
             if result["success"]:
                 bal = get_balance(login)
-                message = "cost has been added\nyours balance: {}".format(bal)
-                QMessageBox.information(self, 'success', message)
+                if bal["success"]:
+                    message = "cost has been added\nyours balance: {}".format(bal["bal"])
+                    QMessageBox.information(self, 'success', message)
                 return True
             else:
                 QMessageBox.information(self, 'Error', "Please try later")

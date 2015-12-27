@@ -47,7 +47,6 @@ def delete_user_request(login):
     try:
         delete_selected_user(login)
     except Exception as E:
-        QMessageBox.information(self, 'no', "There is problems with server.\n Please, try later.")
         return False
     return True
 
@@ -60,11 +59,11 @@ def update_user_plan(login, value):
     try:
         result = update_plane(login, month, year, value)
     except Exception as E:
-        QMessageBox.information(self, 'no', "There is problems with server.\n Please, try later.")
         result = {
-            "success": False
+            "success": False,
+            "message": "There is problems with server.\n Please, try later."
         }
-    return result["success"]
+    return result
 
 
 def get_user_plan(login):
@@ -98,12 +97,19 @@ def check_plan(login):
 
 
 def get_balance(login):
+    balance = {
+        "bal": 0,
+        "success": True
+    }
+
+
     date = datetime.now()
-    month = date.month
+    month2 = date.month
+    month1 = date.strftime('%b').upper()
     year = date.year
     year = str(year)[-2:]
 
-    date = "%{}%{}".format(month, year)
+    date = "%{}%{}".format(month1, year)
     try:
         costs = select_all_user_costs(login, date)
     except Exception as E:
@@ -111,14 +117,17 @@ def get_balance(login):
         costs = {
             "sum_cost": [0]
         }
+        balance["success"] = False
+
     try:
-        plane = get_plane(login, month, year)
+        plane = get_plane(login, month2, year)
     except Exception as E:
         QMessageBox.information(self, 'Error', "There is a problem in a server")
         plane = {
             "plane": 0
         }
-
-    balance = plane["plane"] - costs["sum_cost"][0]
+        balance["success"] = False
+    bal = plane["plane"] - costs["sum_cost"][0]
+    balance["bal"] = bal
 
     return balance
