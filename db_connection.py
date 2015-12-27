@@ -270,3 +270,32 @@ def get_all_users():
         users_result["users_emails"] = users_emails
 
     return users_result
+
+
+def select_all_users_costs(login):
+    global con
+    global cur
+
+    costs_result ={"success": True,
+                   "sum_cost": ''}
+
+    user_cost_numbers =[]
+
+    cur.execute('SELECT cost_number_fk FROM usercosts WHERE user_login_fk = \'{0}\''.format(login))
+    for result_cost_number in cur:
+        user_cost_numbers.append(result_cost_number[0])
+
+    if len(user_cost_numbers) > 1:
+        user_cost_numbers_tuple = tuple(user_cost_numbers)
+    elif len(user_cost_numbers) == 1:
+        user_cost_numbers_tuple = user_cost_numbers[0]
+    else:
+        user_cost_numbers_tuple = 0
+
+    cur.execute('SELECT SUM(cost_money_summ)'
+                ' FROM costs WHERE cost_number IN {0} '
+                .format(user_cost_numbers_tuple))
+    for result_sum in cur:
+        costs_result["sum_cost"] = result_sum
+
+    return costs_result
