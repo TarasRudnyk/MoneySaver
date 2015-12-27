@@ -2,18 +2,9 @@ import cx_Oracle
 
 
 def get_configuration():
-    with open("config", encoding='utf-8') as config_file:
-        parameters = {}
-        for line in config_file:
-            parameter, value = line.split(": ")
-            parameter = parameter.rstrip()
-            value = value.strip()
-            parameters[parameter] = value
+    with open("settings", encoding='utf-8') as config_file:
+        info = config_file.readline()
 
-    info = "{}/{}@{}/{}".format(parameters["name"],
-                                parameters["password"],
-                                parameters["server and port"],
-                                parameters["database service"])
     print("Server started with parameters:", info)
     return info
 
@@ -100,6 +91,8 @@ def add_new_cost(login, new_cost_data):
     cur.execute('SELECT MAX(cost_number) FROM costs')
     for result_cost_number in cur:
         cost_number = result_cost_number[0] + 1
+
+    cur.execute('set transaction isolation level serializable')
     try:
         cur.execute('INSERT INTO costs(cost_number, cost_category, cost_money_summ, cost_comment, cost_date, cost_time) '
                     'VALUES (\'{0}\',\'{1}\', \'{2}\', \'{3}\', \'{4}\', \'{5}\')'.format(cost_number,
@@ -150,6 +143,7 @@ def create_plane(plane_data):
         "success": True
     }
 
+    cur.execute('set transaction isolation level read committed')
     try:
         cur.execute('INSERT INTO plane(user_login_fk, plane_month, plane_money_summ, plane_year) '
                     'VALUES (\'{0}\', \'{1}\', \'{2}\', \'{3}\')'.format(plane_data['login'],
@@ -172,6 +166,7 @@ def update_plane(plane_data):
         "success": True
     }
 
+    cur.execute('set transaction isolation level read committed')
     try:
         cur.execute('UPDATE plane '
                     'SET plane_money_summ = {0} '
@@ -198,7 +193,7 @@ def registration(registration_result):
     }
 
     try:
-        # cur.execute('set transaction isolation level serializable')
+        cur.execute('set transaction isolation level serializable')
         cur.execute('INSERT INTO users (USER_LOGIN_PK, USER_PASSWORD, USER_FIRST_NAME, USER_LAST_NAME,'
                     ' USER_PHONE_NUMBER, USER_EMAIL, USER_ROLE)'
                     'VALUES (\'{0}\',\'{1}\', \'{2}\', \'{3}\', \'{4}\', \'{5}\', \'{6}\')'.format(
@@ -227,7 +222,7 @@ def delete_selected_user(login):
     }
 
     try:
-        # cur.execute('set transaction isolation level serializable')
+        cur.execute('set transaction isolation level serializable')
         cur.execute('DELETE FROM usercosts '
                     'WHERE user_login_fk = \'{0}\''.format(login))
         cur.execute('DELETE FROM plane '

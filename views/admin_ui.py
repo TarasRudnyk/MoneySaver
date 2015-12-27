@@ -12,8 +12,8 @@ class Ui_AdminWindow(object):
     def setupUi(self, AdminWindow):
         AdminWindow.setObjectName("AdminWindow")
         AdminWindow.resize(1360, 700)
-        AdminWindow.setMinimumSize(QtCore.QSize(1360, 700))
-        AdminWindow.setMaximumSize(QtCore.QSize(1360, 700))
+        # AdminWindow.setMinimumSize(QtCore.QSize(1360, 700))
+        # AdminWindow.setMaximumSize(QtCore.QSize(1360, 700))
         icon = QtGui.QIcon()
         icon.addPixmap(QtGui.QPixmap("views/icon.jpg"), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         AdminWindow.setWindowIcon(icon)

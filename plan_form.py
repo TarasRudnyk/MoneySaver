@@ -21,6 +21,6 @@ class Plan(QtWidgets.QWidget, plan_ui.Ui_PlanWindow):
             message = "Yours current financial plane: {0} (balance: {1})"\
                 .format(str(get_user_plan(login)), get_balance(login)["bal"])
         except:
-            message = "Yours current financial plane "
+            message = "Yours current financial plane: {0} (balance: {0})".format(str(get_user_plan(login)))
 
         self.label.setText(message)
