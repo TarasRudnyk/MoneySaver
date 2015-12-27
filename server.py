@@ -75,12 +75,12 @@ while True:
                     server_answer = delete_selected_user(received_data["login"])
                     result = "Success" if server_answer["success"] else "Failed"
                     print("Result", result)
-            #
-            #     elif action == "add_user_diagnose":
-            #         server_answer = edit_user_info_add_diagnose(received_data["diagnose_data"],
-            #                                                     received_data["card_number"])
-            #         result = "Success" if server_answer["success"] else "Failed"
-            #         print("Result", result)
+
+                elif action == "add_user_diagnose":
+                    server_answer = edit_user_info_add_diagnose(received_data["diagnose_data"],
+                                                                received_data["card_number"])
+                    result = "Success" if server_answer["success"] else "Failed"
+                    print("Result", result)
 
             else:
                 server_answer = authorize_user(received_data["login"],
