@@ -41,9 +41,26 @@ def reg_request(login, password, phone, name, last_name, email):
         }
 
 
+def get_all_users():
+    # result = {
+    #     "success": True
+    # }
+    try:
+        result = get_all_users()
+        print(result)
+    except Exception as E:
+        QMessageBox.information(self, 'no', "Виникли проблеми з сервером.\nБудь ласка, спробуйте пізніше.")
+        # result["success"] = False
+    return False
+
 
 def delete_user_request(login):
-    return False
+    try:
+        delete_selected_user(login)
+    except Exception as E:
+        QMessageBox.information(self, 'no', "Виникли проблеми з сервером.\nБудь ласка, спробуйте пізніше.")
+        return False
+    return True
 
 
 def update_user_plan(login, value):

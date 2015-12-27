@@ -139,8 +139,8 @@ def registration(login, password, first_name, last_name, phone_number, email):
                      "user_phone_number": phone_number,
                      "user_email": email,
                      "user_role": "user"
+                     }
                  }
-            }
 
     sock.sendall(json.dumps(send_data).encode('utf-8'))
 
@@ -148,3 +148,36 @@ def registration(login, password, first_name, last_name, phone_number, email):
     sock.close()
     data = json.loads(data.decode('utf-8'))
     return data
+
+
+def get_all_users():
+    sock = socket.socket()
+    sock.connect(('127.0.0.1', 9090))
+
+    send_data = {"auth": False,
+                 "action": "get_all_users",
+                 }
+
+    sock.sendall(json.dumps(send_data).encode('utf-8'))
+
+    data = sock.recv(1024)
+    sock.close()
+    data = json.loads(data.decode('utf-8'))
+    return data
+
+
+def delete_selected_user(login):
+    sock = socket.socket()
+    sock.connect(('127.0.0.1', 9090))
+
+    send_data = {"auth": False,
+                 "login": login,
+                 "action": "delete_selected_user",
+                 }
+
+    sock.sendall(json.dumps(send_data).encode('utf-8'))
+
+    data = sock.recv(1024)
+    sock.close()
+    data = json.loads(data.decode('utf-8'))
+    print(data)

@@ -239,7 +239,7 @@ def delete_selected_user(login):
         cur.execute('DELETE FROM plane '
                     'WHERE user_login_fk = \'{0}\''.format(login))
         cur.execute('DELETE FROM users '
-                    'WHERE user_login = \'{0}\''.format(login))
+                    'WHERE user_login = {0}'.format(login))
         con.commit()
     except:
         result["success"] = False
