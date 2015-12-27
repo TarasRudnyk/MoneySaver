@@ -1,4 +1,5 @@
 from datetime import datetime
+
 from server_connection import *
 
 
@@ -92,3 +93,19 @@ def check_plan(login):
     exists = get_plane(login, month, year)
     if exists["plane"] == -1:
         create_plane(login, month, year)
+
+
+def get_balance(login):
+    date = datetime.now()
+    month = date.month
+    year = date.year
+    year = str(year)[-2:]
+
+    date = "%{}%{}".format(month, year)
+    costs = select_all_user_costs(login, date)
+
+    plane = get_plane(login, month, year)
+
+    balance = plane["plane"] - costs["sum_cost"][0]
+
+    return balance

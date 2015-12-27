@@ -76,9 +76,9 @@ while True:
                     result = "Success" if server_answer["success"] else "Failed"
                     print("Result", result)
 
-                elif action == "add_user_diagnose":
-                    server_answer = edit_user_info_add_diagnose(received_data["diagnose_data"],
-                                                                received_data["card_number"])
+                elif action == "select_all_users_costs":
+                    server_answer = select_all_users_costs(received_data["login"],
+                                                           received_data["cost_date"])
                     result = "Success" if server_answer["success"] else "Failed"
                     print("Result", result)
 

@@ -62,7 +62,6 @@ def add_new_cost(login, summ, category, comment, date, time):
 
     data = sock.recv(1024)
     sock.close()
-    print(data)
     data = json.loads(data.decode('utf-8'))
     return data
 
@@ -121,7 +120,6 @@ def update_plane(login, month, year, money):
     data = sock.recv(1024)
     sock.close()
     data = json.loads(data.decode('utf-8'))
-    print(data)
     return data
 
 
@@ -180,4 +178,21 @@ def delete_selected_user(login):
     data = sock.recv(1024)
     sock.close()
     data = json.loads(data.decode('utf-8'))
-    print(data)
+
+
+def select_all_user_costs(login, cost_date):
+    sock = socket.socket()
+    sock.connect(('127.0.0.1', 9090))
+
+    send_data = {"auth": False,
+                 "login": login,
+                 "action": "select_all_users_costs",
+                 "cost_date": cost_date
+                 }
+
+    sock.sendall(json.dumps(send_data).encode('utf-8'))
+
+    data = sock.recv(1024)
+    sock.close()
+    data = json.loads(data.decode('utf-8'))
+    return data

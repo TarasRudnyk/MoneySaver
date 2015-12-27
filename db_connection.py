@@ -74,7 +74,6 @@ def get_user_info(login, cost_date):
                 ' FROM costs WHERE cost_number IN {0} AND cost_date LIKE \'{1}\''
                 .format(user_cost_numbers_tuple, cost_date))
 
-    print(cur)
     for result_user_info in cur:
         cost_categorys.append(result_user_info[0])
         cost_money_sums.append(result_user_info[1])
@@ -102,7 +101,6 @@ def add_new_cost(login, new_cost_data):
     cur.execute('SELECT MAX(cost_number) FROM costs')
     for result_cost_number in cur:
         cost_number = result_cost_number[0] + 1
-    print(new_cost_data)
     try:
         cur.execute('INSERT INTO costs(cost_number, cost_category, cost_money_summ, cost_comment, cost_date, cost_time) '
                     'VALUES (\'{0}\',\'{1}\', \'{2}\', \'{3}\', \'{4}\', \'{5}\')'.format(cost_number,
@@ -118,7 +116,6 @@ def add_new_cost(login, new_cost_data):
 
         con.commit()
     except Exception as E:
-        print(E)
         result['success'] = False
         con.rollback()
 
@@ -142,7 +139,6 @@ def get_plane(login, plane_month, plane_year):
             result["plane"] = result_plane[0]
     except Exception as E:
         result['success'] = False
-    print(result["plane"])
 
     return result
 
@@ -188,7 +184,6 @@ def update_plane(plane_data):
                                                   plane_data['year']))
         con.commit()
     except Exception as E:
-        print(E)
         result['success'] = False
         con.rollback()
 
@@ -242,7 +237,6 @@ def delete_selected_user(login):
                     'WHERE user_login_pk = \'{0}\''.format(login))
         con.commit()
     except Exception as E:
-        print(E)
         result["success"] = False
         con.rollback()
 
@@ -289,9 +283,9 @@ def select_all_users_costs(login, cost_date):
     global cur
 
     costs_result ={"success": True,
-                   "sum_cost": ''}
+                   "sum_cost": 0}
 
-    user_cost_numbers =[]
+    user_cost_numbers = []
 
     cur.execute('SELECT cost_number_fk FROM usercosts WHERE user_login_fk = \'{0}\''.format(login))
     for result_cost_number in cur:
