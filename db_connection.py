@@ -125,19 +125,24 @@ def add_new_cost(login, new_cost_data):
     return result
 
 
-def get_plane(login, plane_month):
+def get_plane(login, plane_month, plane_year):
     global con
     global cur
 
     result = {
-        "success": True
+        "success": True,
+        "plane": -1
     }
 
     try:
         cur.execute('SELECT plane_money_summ FROM plane '
-                    'WHERE user_login_fk = \'{0}\' AND plane_month = \'{1}\''. format(login, plane_month))
+                    'WHERE user_login_fk = \'{0}\' AND plane_month = \'{1}\''
+                    ' AND plane_year = \'{2}\' '. format(login, plane_month, plane_year))
+        for result_plane in cur:
+            result["plane"] = result_plane[0]
     except Exception as E:
         result['success'] = False
+    print(result["plane"])
 
     return result
 
@@ -151,10 +156,11 @@ def create_plane(plane_data):
     }
 
     try:
-        cur.execute('INSERT INTO plane(user_login_fk, plane_month, plane_money_summ) '
-                    'VALUES (\'{0}\', \'{1}\', \'{2}\')'.format(plane_data['login'],
-                                                                plane_data['month'],
-                                                                plane_data['money']))
+        cur.execute('INSERT INTO plane(user_login_fk, plane_month, plane_money_summ, plane_year) '
+                    'VALUES (\'{0}\', \'{1}\', \'{2}\', \'{3}\')'.format(plane_data['login'],
+                                                                         plane_data['month'],
+                                                                         0,
+                                                                         plane_data['year']))
         con.commit()
     except Exception as E:
         result['success'] = False
@@ -173,13 +179,16 @@ def update_plane(plane_data):
 
     try:
         cur.execute('UPDATE plane '
-                    'SET plane_month = \'{0}\' '
-                    'plane_money_summ = \'{1}\' '
-                    'WHERE user_login_fk = \'{2}\''.format(plane_data['month'],
-                                                           plane_data['money'],
-                                                           plane_data['login']))
+                    'SET plane_money_summ = {0} '
+                    'WHERE user_login_fk = \'{1}\' '
+                    'AND plane_month = {2} '
+                    'AND plane_year = {3}'.format(plane_data['money'],
+                                                  plane_data['login'],
+                                                  plane_data['month'],
+                                                  plane_data['year']))
         con.commit()
     except Exception as E:
+        print(E)
         result['success'] = False
         con.rollback()
 

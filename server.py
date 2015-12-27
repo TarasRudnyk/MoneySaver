@@ -45,23 +45,21 @@ while True:
                     result = "Success" if server_answer["success"] else "Failed"
                     print("Result", result)
 
-                elif action == "delete_user":
-                    server_answer = delete_selected_users(received_data["user_card_number"])
-                    print("Card number to delete", received_data["user_card_number"])
+                elif action == "create_plane":
+                    server_answer = create_plane(received_data)
                     result = "Success" if server_answer["success"] else "Failed"
                     print("Result", result)
-            #
-            #     elif action == "get_all_user_info":
-            #         server_answer = edit_user_info_select_data(received_data["user_card_number"])
-            #         print("User card number", received_data["user_card_number"])
-            #         result = "Success" if server_answer["success"] else "Failed"
-            #         print("Result", result)
-            #
-            #     elif action == "update_user_info":
-            #         server_answer = edit_user_info_update_data(received_data["user_data"])
-            #         print("User card number", received_data["user_data"]["user_card_number"])
-            #         result = "Success" if server_answer["success"] else "Failed"
-            #         print("Result", result)
+
+                elif action == "get_plane":
+                    server_answer = get_plane(received_data["login"], received_data["month"],
+                                              received_data["year"])
+                    result = "Success" if server_answer["success"] else "Failed"
+                    print("Result", result)
+
+                elif action == "update_plane":
+                    server_answer = update_plane(received_data)
+                    result = "Success" if server_answer["success"] else "Failed"
+                    print("Result", result)
             #
             #     elif action == "get_user_diagnoses_for_admin":
             #         server_answer = edit_user_info_select_diagnoses(received_data["user_card_number"])
