@@ -54,7 +54,6 @@ class Ui_NewCost(object):
 
     def retranslateUi(self, NewCost):
         _translate = QtCore.QCoreApplication.translate
-        NewCost.setWindowTitle(_translate("NewCost", "New cost"))
         self.summary_price_label.setText(_translate("NewCost", "Costs sum (grn)"))
         self.category_label.setText(_translate("NewCost", "Category"))
         self.comment_label.setText(_translate("NewCost", "Comment"))

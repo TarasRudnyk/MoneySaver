@@ -31,7 +31,7 @@ class Ui_PlanWindow(object):
         self.save_button.setGeometry(QtCore.QRect(240, 140, 110, 23))
         self.save_button.setObjectName("save_button")
         self.label = QtWidgets.QLabel(PlanWindow)
-        self.label.setGeometry(QtCore.QRect(50, 20, 250, 16))
+        self.label.setGeometry(QtCore.QRect(40, 20, 270, 16))
         self.label.setObjectName("label")
 
         self.retranslateUi(PlanWindow)
@@ -39,7 +39,6 @@ class Ui_PlanWindow(object):
 
     def retranslateUi(self, PlanWindow):
         _translate = QtCore.QCoreApplication.translate
-        PlanWindow.setWindowTitle(_translate("PlanWindow", "Plane"))
         self.money_label.setText(_translate("PlanWindow", "Enter sum (grn)"))
         self.back_button.setText(_translate("PlanWindow", "Back"))
         self.save_button.setText(_translate("PlanWindow", "Save"))

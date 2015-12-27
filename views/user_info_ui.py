@@ -80,7 +80,6 @@ class Ui_UserInfo(object):
 
     def retranslateUi(self, UserInfo):
         _translate = QtCore.QCoreApplication.translate
-        UserInfo.setWindowTitle(_translate("UserInfo", "My history"))
         self.info_label.setText(_translate("UserInfo", "Please enter in what month you would like see costs history"))
         self.month_comboBox.setItemText(0, _translate("UserInfo", "All"))
         self.month_comboBox.setItemText(1, _translate("UserInfo", "January"))

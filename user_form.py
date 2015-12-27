@@ -13,6 +13,7 @@ class User(QtWidgets.QWidget, user_info_ui.Ui_UserInfo):
 
         month = translate_month(month)
         cost = "%" + str(month) + "%" + year[-2:]
+        print(cost)
         try:
             data = select_month_user_info(login, cost)
         except Exception as E:
@@ -41,18 +42,18 @@ class User(QtWidgets.QWidget, user_info_ui.Ui_UserInfo):
 def translate_month(month):
     dictionary = {
         "All": "%",
-        "January": "01",
-        "February": "02",
-        "Mart": "03",
-        "April": "04",
-        "May": "05",
-        "June": "06",
-        "Julie": "07",
-        "August": "08",
-        "September": "09",
-        "October": "10",
-        "November": "11",
-        "December": "12",
+        "January": "JAN",
+        "February": "FEB",
+        "Mart": "MAR",
+        "April": "APR",
+        "May": "MAY",
+        "June": "JUN",
+        "Julie": "JUL",
+        "August": "AUG",
+        "September": "SEP",
+        "October": "OCT",
+        "November": "NOV",
+        "December": "DEC",
     }
 
     month = dictionary[month]
