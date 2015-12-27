@@ -1,3 +1,4 @@
+from PyQt5.QtWidgets import QMessageBox
 from datetime import datetime
 
 from server_connection import *
@@ -42,19 +43,6 @@ def reg_request(login, password, phone, name, last_name, email):
         }
 
 
-def get_all_users():
-    # result = {
-    #     "success": True
-    # }
-    try:
-        result = get_all_users()
-        print(result)
-    except Exception as E:
-        QMessageBox.information(self, 'no', "Виникли проблеми з сервером.\nБудь ласка, спробуйте пізніше.")
-        # result["success"] = False
-    return False
-
-
 def delete_user_request(login):
     try:
         delete_selected_user(login)
@@ -69,8 +57,13 @@ def update_user_plan(login, value):
     month = date.month
     year = date.year
     year = str(year)[-2:]
-
-    result = update_plane(login, month, year, value)
+    try:
+        result = update_plane(login, month, year, value)
+    except Exception as E:
+        QMessageBox.information(self, 'no', "Виникли проблеми з сервером.\nБудь ласка, спробуйте пізніше.")
+        result = {
+            "success": False
+        }
     return result["success"]
 
 
@@ -90,9 +83,18 @@ def check_plan(login):
     year = date.year
     year = str(year)[-2:]
 
-    exists = get_plane(login, month, year)
+    try:
+        exists = get_plane(login, month, year)
+    except Exception as E:
+        exists = {
+            "plane": -2
+        }
     if exists["plane"] == -1:
-        create_plane(login, month, year)
+        try:
+            create_plane(login, month, year)
+        except:
+            QMessageBox.information(self, 'помилка', "помилка на сервері")
+
 
 
 def get_balance(login):
@@ -102,9 +104,20 @@ def get_balance(login):
     year = str(year)[-2:]
 
     date = "%{}%{}".format(month, year)
-    costs = select_all_user_costs(login, date)
-
-    plane = get_plane(login, month, year)
+    try:
+        costs = select_all_user_costs(login, date)
+    except Exception as E:
+        QMessageBox.information(self, 'помилка', "помилка на сервері")
+        costs = {
+            "sum_cost": [0]
+        }
+    try:
+        plane = get_plane(login, month, year)
+    except Exception as E:
+        QMessageBox.information(self, 'помилка', "помилка на сервері")
+        plane = {
+            "plane": 0
+        }
 
     balance = plane["plane"] - costs["sum_cost"][0]
 

@@ -16,6 +16,9 @@ class Plan(QtWidgets.QWidget, plan_ui.Ui_PlanWindow):
 
 
     def show_user_plan(self, login):
-        message = "Ваш поточний фінансовий план: " + str(get_user_plan(login))
+        try:
+            message = "Ваш поточний фінансовий план: " + str(get_user_plan(login))
+        except:
+            message = "Ваш поточний фінансовий план: 0"
 
         self.label.setText(message)

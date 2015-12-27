@@ -13,7 +13,12 @@ class User(QtWidgets.QWidget, user_info_ui.Ui_UserInfo):
 
         month = translate_month(month)
         cost = "%" + str(month) + "%" + year[-2:]
-        data = select_month_user_info(login, cost)
+        try:
+            data = select_month_user_info(login, cost)
+        except Exception as E:
+            data = {
+                "cost_sum": []
+            }
         raw = len(data["cost_sum"])
 
         self.costs_tableWidget.setColumnCount(4)

@@ -25,7 +25,12 @@ class AddCost(QtWidgets.QWidget, user_new_cost_ui.Ui_NewCost):
             time = "{}:{}:{}".format(date.hour, date.minute, date.second)
             date = "{}-{}-{}".format(date.day, date.month, date.year)
 
-            result = add_new_cost(login, summ, category, comment, date, time)
+            try:
+                result = add_new_cost(login, summ, category, comment, date, time)
+            except Exception as E:
+                result = {
+                    "success": False
+                }
             if result["success"]:
                 bal = get_balance(login)
                 message = "витрату доданою\nваш баланс: {}".format(bal)

@@ -116,7 +116,7 @@ class Window(authorization_form.Authorization):
         self.close()
         self.dialog_usr.show()
         self.dialog_usr.exec()
-        self.destroy()
+        self.show()
 
     def show_user_history(self):
         global login
